@@ -7,7 +7,6 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1><spring:message code="sampleTable"/></h1>
-                <a href="/sampleList">aa</a>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -29,7 +28,7 @@
                         <h3 class="card-title">DataTable with default features</h3>
                     </div>
                     <div class="col-4">
-                        <button id="regBtn" class="btn btn-primary btn-xs"><spring:message code="button.reg"/></button>
+                        <button id="tableRegButton" class="btn btn-primary btn-xs"><spring:message code="button.reg"/></button>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -40,24 +39,17 @@
                             <th>id</th>
                             <th>comment</th>
                             <th>sample</th>
+                            <th>edit</th>
                         </tr>
                         </thead>
                         <tbody id="sampleTbody">
-<%--                        <tr>--%>
-<%--                            <td>Trident</td>--%>
-<%--                            <td>Internet--%>
-<%--                                Explorer 4.0--%>
-<%--                            </td>--%>
-<%--                            <td>Win 95+</td>--%>
-<%--                            <td> 4</td>--%>
-<%--                            <td>X</td>--%>
-<%--                        </tr>--%>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>id</th>
                             <th>comment</th>
                             <th>sample</th>
+                            <th>edit</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -96,7 +88,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <button class="btn btn-primary" id="modalReg"><spring:message code="button.reg"/></button>
+                    <button class="btn btn-primary"><spring:message code="button.reg"/></button>
                 </div>
             </div>
         </div>
@@ -105,4 +97,5 @@
     <%--/.modal content--%>
 </div>
 
-<script src="${contextPath}/js/sampleTable.js"></script>
+
+<script defer async  src="${contextPath}/js/sampleTableAct.js"></script>

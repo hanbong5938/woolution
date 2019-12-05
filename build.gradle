@@ -42,8 +42,8 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
     // JOSN/XMl
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml'
-
-
+    // https://mvnrepository.com/artifact/org.json/json
+    compile group: 'org.json', name: 'json', version: '20190722'
 }
 
 test {
