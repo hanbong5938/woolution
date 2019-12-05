@@ -5,9 +5,10 @@ build
 .gitignore
 build.gradle
 src/main/resources/application.properties
-.gradle/5.6.4/vcsMetadata-1/ 제거할 예정
-build/generated/ 제거할 예정
-build/resources/main/WEB-INF/ 제거할 예정
+.gradle/5.6.4/vcsMetadata-1/
+build/generated/
+build/resources/main/WEB-INF/
 build/tmp/ 제거할 예정
-src/main/java/com/woolution/shop/security/ 제거할 예정
-src/main/java/com/woolution/shop/util/ 제거할 예정
+src/main/java/com/woolution/shop/security/
+src/main/java/com/woolution/shop/util/
+
