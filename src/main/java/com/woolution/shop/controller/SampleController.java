@@ -35,8 +35,13 @@ public class SampleController {
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK): new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping(value = "/sampleList", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+    @GetMapping(value = "/sampleList", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<SampleModel>> sampleList(Model model){
+        return new ResponseEntity<>(sampleService.sampleList(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/sampleList", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<SampleModel>> sampleList(){
         return new ResponseEntity<>(sampleService.sampleList(), HttpStatus.OK);
     }
 }
