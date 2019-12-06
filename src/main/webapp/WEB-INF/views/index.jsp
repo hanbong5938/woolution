@@ -8,7 +8,7 @@
 
 <%@ include file="./navbar/sideNavbar.jsp" %>
 
-<div class="content-wrapper">
+<div id="content-wrapper" class="content-wrapper">
 
 </div>
 

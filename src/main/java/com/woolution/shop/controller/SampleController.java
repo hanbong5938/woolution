@@ -21,10 +21,6 @@ public class SampleController {
     private SampleService sampleService;
 
     @Autowired
-    public void setLocaleResolver(LocaleResolver localeResolver) {
-    }
-
-    @Autowired
     public void setSampleService(SampleService sampleService){
         this.sampleService = sampleService;
     }
@@ -40,10 +36,10 @@ public class SampleController {
         return new ResponseEntity<>(sampleService.sampleList(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/sampleList", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<SampleModel>> sampleList(){
-        return new ResponseEntity<>(sampleService.sampleList(), HttpStatus.OK);
-    }
+//    @PostMapping(value = "/sampleList", produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<List<SampleModel>> sampleList(){
+//        return new ResponseEntity<>(sampleService.sampleList(), HttpStatus.OK);
+//    }
 }
 
 

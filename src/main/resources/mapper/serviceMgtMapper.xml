@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woolution.shop.mapper.ServiceMgtMapper">
+
+    <insert id="infoInsert">
+        insert into service (service_kind, service_desc, service_price, service_tet, service_state, service_createAT,
+                             admin_id)
+        VALUES (#{service_kind}, #{service_desc}, #{service_price}, #{service_tet}, #{service_state},
+                now(), 1)
+    </insert>
+
+    <select id="infoList" resultType="hashmap">
+        select id,
+               service_kind,
+               service_desc,
+               service_price,
+               service_tet,
+               service_state,
+               service_createAT,
+               admin_id
+        from service;
+    </select>
+</mapper>
