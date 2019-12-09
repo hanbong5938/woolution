@@ -20,6 +20,17 @@
                service_state,
                service_createAT,
                admin_id
-        from service;
+        from service
+        where service_state = 1
     </select>
+
+    <update id="infoMod">
+        update service
+        set service_kind     = #{service_kind},
+            service_desc     = #{service_kind},
+            service_price    = #{service_price},
+            service_tet      = #{service_tet}
+        where id = #{id}
+    </update>
+
 </mapper>

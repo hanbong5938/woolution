@@ -9,4 +9,6 @@ public interface ServiceMgtMapper {
     int infoInsert(ServiceMgtModel serviceMgtModel);
 
     List<ServiceMgtModel> infoList();
+
+    int infoMod(ServiceMgtModel serviceMgtModel);
 }

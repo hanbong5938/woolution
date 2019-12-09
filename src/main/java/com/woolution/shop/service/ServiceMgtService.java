@@ -9,4 +9,6 @@ public interface ServiceMgtService {
     int infoInsert(ServiceMgtModel serviceMgtModel);
 
     List<ServiceMgtModel> infoList();
+
+    int infoMod(ServiceMgtModel serviceMgtModel);
 }

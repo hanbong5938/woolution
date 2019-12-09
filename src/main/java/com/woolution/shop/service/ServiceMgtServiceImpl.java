@@ -27,4 +27,9 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
         return serviceMgtMapper.infoList();
     }
 
+    @Override
+    public int infoMod(ServiceMgtModel serviceMgtModel) {
+        return serviceMgtMapper.infoMod(serviceMgtModel);
+    }
+
 }

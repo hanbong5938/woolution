@@ -28,7 +28,7 @@
                         <h3 class="card-title">DataTable with default features</h3>
                     </div>
                     <div class="col-4">
-                        <button id="tableRegButton" class="btn btn-primary btn-xs"><spring:message
+                        <button id="tableRegBtn" class="btn btn-primary btn-xs"><spring:message
                                 code="button.reg"/></button>
                     </div>
                 </div>
@@ -82,37 +82,52 @@
             <div class="modal-body">
                 <div class="form-group">
                     <div class="input-group">
+                        <input name="id">
+                    </div>
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
-                            <input name="service_kind" type="text" class="form-control">
+                            <label>
+                                <input name="service_kind" type="text" class="form-control">
+                            </label>
                         </div>
                     </div>
                     <div class="input-group">
                         <div class="input-group-append">
-                            <input name="service_desc" type="number" class="form-control">
+                            <label>
+                                <input name="service_desc" type="text" class="form-control">
+                            </label>
                             <span class="input-group-text">.00</span>
                         </div>
                     </div>
                     <div class="input-group">
                         <div class="input-group-append">
-                            <input name="service_price" type="number" class="form-control">
+                            <label>
+                                <input name="service_price" type="number" class="form-control">
+                            </label>
                             <span class="input-group-text">.00</span>
                         </div>
                     </div>
                     <div class="input-group">
                         <div class="input-group-append">
-                            <input name="service_tet" type="text" class="form-control">
+                            <label>
+                                <input name="service_tet" type="text" class="form-control">
+                            </label>
                             <span class="input-group-text">.00</span>
                         </div>
                     </div>
                     <div class="input-group">
                         <div class="input-group-append">
-                            <input name="service_state" type="number" class="form-control">
+                            상태
+                            <label>
+                                <input name="service_state" type="number" class="form-control">
+                            </label>
                             <span class="input-group-text">.00</span>
                         </div>
                     </div>
                     <div class="input-group">
                         <button class="btn btn-primary"><spring:message code="button.reg"/></button>
+                        <button class="btn btn-info"><spring:message code="button.mod"/></button>
                     </div>
                 </div>
             </div>
