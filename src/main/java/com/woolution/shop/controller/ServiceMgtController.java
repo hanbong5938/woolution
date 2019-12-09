@@ -40,4 +40,11 @@ public class ServiceMgtController {
         int count = serviceMgtService.infoMod(serviceMgtModel);
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @PatchMapping(value = "/infoDel", produces = {MediaType.TEXT_PLAIN_VALUE})
+    public ResponseEntity<String> infoDel(@RequestBody int id) {
+        System.out.println(id);
+        int count = serviceMgtService.infoDel(id);
+        return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

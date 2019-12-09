@@ -11,4 +11,6 @@ public interface ServiceMgtMapper {
     List<ServiceMgtModel> infoList();
 
     int infoMod(ServiceMgtModel serviceMgtModel);
+
+    int infoDel(int id);
 }

@@ -32,4 +32,10 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
         return serviceMgtMapper.infoMod(serviceMgtModel);
     }
 
+    @Override
+    public int infoDel(int id) {
+        return serviceMgtMapper.infoDel(id);
+    }
+
+
 }

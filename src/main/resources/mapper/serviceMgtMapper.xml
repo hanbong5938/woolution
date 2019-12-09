@@ -7,7 +7,7 @@
     <insert id="infoInsert">
         insert into service (service_kind, service_desc, service_price, service_tet, service_state, service_createAT,
                              admin_id)
-        VALUES (#{service_kind}, #{service_desc}, #{service_price}, #{service_tet}, #{service_state},
+        VALUES (#{service_kind}, #{service_desc}, #{service_price}, #{service_tet}, 1,
                 now(), 1)
     </insert>
 
@@ -33,4 +33,9 @@
         where id = #{id}
     </update>
 
+    <update id="infoDel">
+        update service
+        set service_state = 0
+        where id = #{id}
+    </update>
 </mapper>

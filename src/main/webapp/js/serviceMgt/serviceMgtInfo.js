@@ -7,7 +7,6 @@ dataTableService = (() => {
             data: JSON.stringify(serviceContent),
             contentType: "application/json; charset=utf-8",
             success: ((result, status, xhr) => {
-                console.log(result);
                 //다시 불러오기
                 dataTableInfo.ajax.reload();
             }),
@@ -19,14 +18,12 @@ dataTableService = (() => {
 
 
     function serviceTableMod(serviceContent) {
-        console.log(serviceContent);
         $.ajax({
             type: 'patch',
             url: '/service-mgt/infoMod',
             data: JSON.stringify(serviceContent),
             contentType: "application/json; charset=uft-8",
             success: ((result, status, xhr) => {
-                console.log(serviceContent);
                 dataTableInfo.ajax.reload();
             }),
             error: (xhr, status, er) => {
@@ -34,6 +31,22 @@ dataTableService = (() => {
             }
         })
     }
+
+    function serviceTableDel(id) {
+        $.ajax({
+            type: 'patch',
+            url: '/service-mgt/infoDel',
+            data: JSON.stringify(id),
+            contentType: "application/json; charset=uft-8",
+            success: ((result, status, xhr) => {
+                dataTableInfo.ajax.reload();
+            }),
+            error: (xhr, status, er) => {
+                alert(er);
+            }
+        })
+    }
+
 
     function serviceEdit() {
         const selectRaw = $(this).closest('tr').data();
@@ -53,7 +66,8 @@ dataTableService = (() => {
     return {
         serviceTableRegister: serviceTableRegister,
         serviceTableMod: serviceTableMod,
-        serviceEdit: serviceEdit
+        serviceEdit: serviceEdit,
+        serviceTableDel: serviceTableDel
     }
 })();
 
@@ -90,7 +104,6 @@ $("#tableRegBtn").click(() => {
 //모달 등록 버튼 클릭이
 $(".modal-body > .form-group > .input-group > .btn-primary").click(
     () => {
-        alert("primary");
         const serviceContent = {
                 service_kind: $("input[name=service_kind]").val(),
                 service_desc: $("input[name=service_desc]").val(),
@@ -110,7 +123,6 @@ $(".modal-body > .form-group > .input-group > .btn-primary").click(
 
 $(".modal-body > .form-group > .input-group > .btn-info").click(
     () => {
-        alert("info");
         const serviceContent = {
                 id: $("input[name=id]").val(),
                 service_kind: $("input[name=service_kind]").val(),
@@ -123,6 +135,18 @@ $(".modal-body > .form-group > .input-group > .btn-info").click(
 
         //등록
         dataTableService.serviceTableMod(serviceContent);
+
+        //모달 닫기, 빈칸 처리
+        $('.modal').modal("toggle").find("input").val("");
+    }
+);
+
+$(".modal-body > .form-group > .input-group > .btn-danger").click(
+    () => {
+        const id = $("input[name=id]").val();
+
+        //등록
+        dataTableService.serviceTableDel(id);
 
         //모달 닫기, 빈칸 처리
         $('.modal').modal("toggle").find("input").val("");

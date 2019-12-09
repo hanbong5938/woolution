@@ -128,6 +128,7 @@
                     <div class="input-group">
                         <button class="btn btn-primary"><spring:message code="button.reg"/></button>
                         <button class="btn btn-info"><spring:message code="button.mod"/></button>
+                        <button class="btn btn-danger"><spring:message code="button.del"/></button>
                     </div>
                 </div>
             </div>
