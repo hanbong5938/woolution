@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woolution.shop.mapper.ServiceMgtMapper">
+
+    <!--임시로 admin_id 1로 고정-->
+    <insert id="infoInsert">
+        insert into service (service_category_id, service_desc, service_price, service_tet, service_state,
+                             service_createAT,
+                             admin_id)
+        VALUES (#{service_category_id}, #{service_desc}, #{service_price}, #{service_tet}, true,
+                now(), 1)
+    </insert>
+
+    <select id="infoList" resultType="hashmap">
+        select id,
+               service_desc,
+               service_price,
+               service_tet,
+               service_state,
+               service_createAT,
+               admin_id,
+               service_category_id,
+               (select service_category_name
+                from service_category
+                where service_category_id = service_category.id) as service_category_name
+        from service
+        where service_state = true
+    </select>
+
+    <update id="infoMod">
+        update service
+        set service_desc        = #{service_desc},
+            service_price       = #{service_price},
+            service_tet         = #{service_tet},
+            service_category_id = #{service_category_id}
+        where id = #{id}
+    </update>
+
+    <update id="infoDel">
+        update service
+        set service_state = false
+        where id = #{id}
+    </update>
+
+    <!--category createAT는 현재 사용할일 없어서 제거-->
+    <select id="infoCategory" resultType="hashmap">
+        select id, service_category_name
+        from service_category;
+    </select>
+
+    <insert id="infoCategoryAdd">
+        insert into service_category(service_category_name, service_category_createAT)
+        values (#{service_category_name}, now())
+    </insert>
+</mapper>
