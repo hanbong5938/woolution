@@ -20,23 +20,23 @@ public class SidebarController {
 
     @GetMapping("/service-mgt/message")
     public String serviceMatMessage() {
-        return "service-mgt-message";
+        return "serviceMgt/service-mgt-message";
     }
 
     @GetMapping("/service-mgt/coupon")
     public String serviceMgtCoupon() {
-        return "service-mgt-coupon";
+        return "serviceMgt/service-mgt-coupon";
     }
 
 
     @GetMapping("/service-mgt/book")
     public String serviceMgtBook() {
-        return "service-mgt-book";
+        return "serviceMgt/service-mgt-book";
     }
 
-    @GetMapping("/service-mgt/anl")
+    @GetMapping("/service-mgt/anal")
     public String serviceMgtAnal() {
-        return "service-mgt-anal";
+        return "/serviceMgt/service-mgt-anal";
     }
     //.--service mgt
 

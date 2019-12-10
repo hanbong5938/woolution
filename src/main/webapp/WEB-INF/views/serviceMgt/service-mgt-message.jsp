@@ -97,5 +97,4 @@
     <%--/.modal content--%>
 </div>
 
-<script src="${contextPath}/js/sampleTableAct.js"></script>
 
