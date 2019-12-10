@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <button class="btn btn-primary"><spring:message code="button.reg"/></button>
+                    <button class="btn btn-primary"><spring:message code="reg"/></button>
                 </div>
             </div>
         </div>

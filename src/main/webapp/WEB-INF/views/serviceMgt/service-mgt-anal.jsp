@@ -28,7 +28,7 @@
                         <h3 class="card-title">DataTable with default features</h3>
                     </div>
                     <div class="col-4">
-                        <button id="tableRegButton" class="btn btn-primary btn-xs"><spring:message code="button.reg"/></button>
+                        <button id="tableRegButton" class="btn btn-primary btn-xs"><spring:message code="reg"/></button>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <button class="btn btn-primary"><spring:message code="button.reg"/></button>
+                    <button class="btn btn-primary"><spring:message code="reg"/></button>
                 </div>
             </div>
         </div>

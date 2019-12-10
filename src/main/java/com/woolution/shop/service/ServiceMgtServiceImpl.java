@@ -1,6 +1,7 @@
 package com.woolution.shop.service;
 
 import com.woolution.shop.mapper.ServiceMgtMapper;
+import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,16 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
     @Override
     public int infoDel(int id) {
         return serviceMgtMapper.infoDel(id);
+    }
+
+    @Override
+    public List<ServiceMgtCategoryModel> infoCategory() {
+        return serviceMgtMapper.infoCategory();
+    }
+
+    @Override
+    public int infoCategoryAdd(ServiceMgtCategoryModel serviceMgtCategoryModel) {
+        return serviceMgtMapper.infoCategoryAdd(serviceMgtCategoryModel);
     }
 
 

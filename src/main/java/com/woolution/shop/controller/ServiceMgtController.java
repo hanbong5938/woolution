@@ -1,13 +1,12 @@
 package com.woolution.shop.controller;
 
-import com.woolution.shop.model.SampleModel;
+import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 import com.woolution.shop.service.ServiceMgtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +36,7 @@ public class ServiceMgtController {
 
     @PatchMapping(value = "/infoMod", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> infoMod(@RequestBody ServiceMgtModel serviceMgtModel) {
+        System.out.println(serviceMgtModel);
         int count = serviceMgtService.infoMod(serviceMgtModel);
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -47,4 +47,17 @@ public class ServiceMgtController {
         int count = serviceMgtService.infoDel(id);
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @GetMapping(value = "/infoCategory", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtCategoryModel>> infoCategory() {
+        return new ResponseEntity<>(serviceMgtService.infoCategory(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/infoCategoryAdd", produces = {MediaType.TEXT_PLAIN_VALUE})
+    public ResponseEntity<String> infoCategoryAdd(@RequestBody ServiceMgtCategoryModel serviceMgtCategoryModel){
+        int count = serviceMgtService.infoCategoryAdd(serviceMgtCategoryModel);
+        return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
 }
