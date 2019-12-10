@@ -1,5 +1,4 @@
-//함수
-var sampleService = (() => {
+dataTableService = (() => {
 
     function sampleTableRegister(sampleContent, callback) {
         $.ajax({
@@ -9,7 +8,7 @@ var sampleService = (() => {
             contentType: "application/json; charset=utf-8",
             success: ((result, status, xhr) => {
                 //다시 불러오기
-                sampleTable.ajax.reload();
+                dataTableService.ajax.reload();
             }),
             error: (xhr, status, er) => {
                 alert(er);
@@ -19,7 +18,7 @@ var sampleService = (() => {
 
     function sampleEdit() {
         const selectRaw = $(this).closest('tr').data();
-        const rawData = sampleTable.row(selectRaw).data();
+        const rawData = dataTableInfo.row(selectRaw).data();
         console.log(rawData);
     }
 
@@ -29,8 +28,7 @@ var sampleService = (() => {
     }
 })();
 
-
-var sampleTable = $('#sample').DataTable({
+dataTableInfo = $('#sample').DataTable({
     ajax: {
         "type": "GET",
         "url": "/sampleList",
@@ -45,8 +43,7 @@ var sampleTable = $('#sample').DataTable({
         {
             "data": null,
             "className": "center",
-            "defaultContent": "<button onclick='sampleService.sampleEdit()'>Edit</button>" +
-                "<button onclick='sampleService.sampleEdit()'>DELETE</button>"
+            "defaultContent": "<button id='adb'>Edit</button>"
         }
     ],
     select: true,
@@ -67,7 +64,7 @@ $(".modal-body > .form-group > .input-group > .btn-primary").click(
         };
 
         //등록
-        sampleService.sampleTableRegister(sampleContent);
+        dataTableService.sampleTableRegister(sampleContent);
         //모달 닫기, 빈칸 처리
         $('.modal').modal("toggle").find("input").val("");
 

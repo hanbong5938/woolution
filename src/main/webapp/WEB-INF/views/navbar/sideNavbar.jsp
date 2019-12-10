@@ -3,7 +3,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/sample" class="brand-link">
+    <a href="/index" class="brand-link">
         <img src="${contextPath}/img/AdminLTELogo.png"
              alt="Woolution Logo"
              class="brand-image img-circle elevation-3"
@@ -45,25 +45,77 @@
                     </ul>
                 </li>
 
+                <%--service-mgt--%>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            <spring:message code="service"/> <spring:message code="mgt"/>
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="serviceMgtInfo" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="service"/> <spring:message code="info"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="serviceMgtMessage" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="service"/> <spring:message code="message"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="serviceMgtCoupon" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="service"/> <spring:message code="coupon"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="serviceMgtBook" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="service"/> <spring:message code="book"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="serviceMgtAnal" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="service"/> <spring:message code="anal"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <%--언어--%>
                 <li class="nav-header"><spring:message code="lang"/></li>
-                <li class="nav-item" id="ko" >
+                <li class="nav-item" id="ko">
                     <a href="#" class="nav-link set-language">
                         <i class="nav-icon far fa-circle text-info"></i>
-                        <p><spring:message code="lang.ko"/></p>
+                        <p><spring:message code="ko"/></p>
                     </a>
                 </li>
                 <li class="nav-item" id="en">
                     <a href="#" class="nav-link set-language">
-                        <div  style="display: inline-block">
+                        <div style="display: inline-block">
                             <img src="${contextPath}/img/flag/usa.png" width="10" height="10" alt="영어"/>
                         </div>
-                        <p><spring:message code="lang.en"/></p>
+                        <p><spring:message code="en"/></p>
                     </a>
                 </li>
                 <li class="nav-item" id="ja">
                     <a href="#" class="nav-link set-language">
                         <i class="nav-icon far fa-circle text-info"></i>
-                        <p><spring:message code="lang.ja"/></p>
+                        <p><spring:message code="ja"/></p>
                     </a>
                 </li>
             </ul>

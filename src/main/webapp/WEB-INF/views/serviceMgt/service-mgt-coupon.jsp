@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/index">Home</a></li>
-                    <li class="breadcrumb-item active"><spring:message code="info"/></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
                 </ol>
             </div>
         </div>
@@ -28,7 +28,7 @@
                         <h3 class="card-title">DataTable with default features</h3>
                     </div>
                     <div class="col-4">
-                        <button id="tableRegButton" class="btn btn-primary btn-xs"><spring:message code="reg"/></button>
+                        <button id="tableRegButton" class="btn btn-primary btn-xs"><spring:message code="button.reg"/></button>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -42,6 +42,8 @@
                             <th>edit</th>
                         </tr>
                         </thead>
+                        <tbody id="sampleTbody">
+                        </tbody>
                         <tfoot>
                         <tr>
                             <th>id</th>

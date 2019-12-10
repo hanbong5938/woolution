@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/index">Home</a></li>
-                    <li class="breadcrumb-item active"><spring:message code="info"/></li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
                 </ol>
             </div>
         </div>
@@ -42,6 +42,8 @@
                             <th>edit</th>
                         </tr>
                         </thead>
+                        <tbody id="sampleTbody">
+                        </tbody>
                         <tfoot>
                         <tr>
                             <th>id</th>
