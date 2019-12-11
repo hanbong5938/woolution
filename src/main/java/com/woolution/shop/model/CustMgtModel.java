@@ -11,10 +11,11 @@ public class CustMgtModel {
     private String cust_nm;
     private int cust_no;
     private String cust_address;
-    private int cust_sex;
-    private Timestamp cust_birthDay;
-    private Date cust_creaetAT;
+    private String cust_sex;
+    private Date cust_birthDay;
+    private Timestamp cust_createAT;
     private boolean cust_state;
     private String cust_parent_nm;
+    private int puppy_species_id;
     private String puppy_species_nm;
 }

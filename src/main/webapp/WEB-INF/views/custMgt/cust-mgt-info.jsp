@@ -67,7 +67,7 @@
 <!-- /.content -->
 
 <%--modal--%>
-<div class="modal fade" id="serviceMgtModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="custMgtModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="color-palette-set">
             <%-- content--%>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="form-group">
                             <label><spring:message code="species"/></label>
-                            <select name="puppy_species" class="form-control"></select>
+                            <select name="puppy_species_id" class="form-control"></select>
                         </div>
                         <div class="form-group">
                             <label><spring:message code="nm"/></label>
@@ -114,8 +114,8 @@
                             <div class="form-group col-3">
                                 <label><spring:message code="sex"/></label>
                                 <select name="cust_sex" class="form-control">
-                                    <option value="0">♂</option>
-                                    <option value="1">♀</option>
+                                    <option value="남">♂</option>
+                                    <option value="">♀</option>
                                 </select>
                             </div>
                         </div>
