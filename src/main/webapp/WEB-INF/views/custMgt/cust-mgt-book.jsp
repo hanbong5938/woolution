@@ -52,6 +52,18 @@
                             <th><spring:message code="mod"/></th>
                         </tr>
                         </thead>
+                        <tfoot>
+                        <tr>
+                            <th><spring:message code="number"/></th>
+                            <th><spring:message code="kind"/></th>
+                            <th><spring:message code="desc"/></th>
+                            <th><spring:message code="price"/></th>
+                            <th><spring:message code="tet"/></th>
+                            <th><spring:message code="state"/></th>
+                            <th><spring:message code="createAT"/></th>
+                            <th><spring:message code="mod"/></th>
+                        </tr>
+                        </tfoot>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -86,16 +98,16 @@
                             <input name="service_state" type="hidden" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="kind"/></label>
+                            <label><spring:message code="cust"/> <spring:message code="kind"/></label>
                             <select name="service_category_id" class="form-control">
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="desc"/></label>
+                            <label><spring:message code="cust"/> <spring:message code="desc"/></label>
                             <textarea name="service_desc" class="form-control" rows="3"></textarea>
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="price"/></label>
+                            <label><spring:message code="cust"/> <spring:message code="price"/></label>
                             <div class="input-group-prepend">
                                 <input name="service_price" type="number" class="form-control">
                                 <span class="input-group-text">￦</span>
@@ -155,4 +167,4 @@
 <!--Modal: Login with Avatar Form-->
 
 
-<script src="${contextPath}/js/serviceMgt/serviceMgtInfo.js"></script>
+<script src="${contextPath}/js/custMgt/custMgtBook.js"></script>

@@ -27,19 +27,37 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
+
+                <%--cust-mgt--%>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
-                            <spring:message code="sample"/>
+                            <spring:message code="cust"/> <spring:message code="mgt"/>
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a id="sampleTable" class="nav-link">
+                            <a id="custMgtInfo" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p><spring:message code="sampleTable"/></p>
+                                <p><spring:message code="cust"/> <spring:message code="info"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="custMgtBook" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="cust"/> <spring:message code="book"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="custMgtAnal" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="cust"/> <spring:message code="anal"/></p>
                             </a>
                         </li>
                     </ul>
@@ -96,28 +114,6 @@
                     </ul>
                 </li>
 
-                <%--언어--%>
-                <li class="nav-header"><spring:message code="lang"/></li>
-                <li class="nav-item" id="ko">
-                    <a href="#" class="nav-link set-language">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p><spring:message code="ko"/></p>
-                    </a>
-                </li>
-                <li class="nav-item" id="en">
-                    <a href="#" class="nav-link set-language">
-                        <div style="display: inline-block">
-                            <img src="${contextPath}/img/flag/usa.png" width="10" height="10" alt="영어"/>
-                        </div>
-                        <p><spring:message code="en"/></p>
-                    </a>
-                </li>
-                <li class="nav-item" id="ja">
-                    <a href="#" class="nav-link set-language">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p><spring:message code="ja"/></p>
-                    </a>
-                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

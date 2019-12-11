@@ -8,7 +8,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/sample" class="nav-link">Home</a>
+            <a href="/index" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
@@ -115,6 +115,24 @@
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            </div>
+        </li>
+
+        <!-- Language Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="flag-icon flag-icon-kr"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right p-0">
+                <a id="ko" class="dropdown-item active set-language">
+                    <i class="flag-icon flag-icon-kr active mr-2"></i> <spring:message code="ko"/>
+                </a>
+                <a id="en" class="dropdown-item set-language">
+                    <i class="flag-icon flag-icon-us mr-2"></i> <spring:message code="en"/>
+                </a>
+                <a id="ja" class="dropdown-item set-language">
+                    <i class="flag-icon flag-icon-jp mr-2"></i> <spring:message code="ja"/>
+                </a>
             </div>
         </li>
         <li class="nav-item">

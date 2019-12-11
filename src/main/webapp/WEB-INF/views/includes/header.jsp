@@ -21,6 +21,16 @@
     <link rel="stylesheet" href="${contextPath}/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <%--flag-icon--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
+
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
+    <link rel="stylesheet" href="../plugins/fullcalendar-interaction/main.min.css">
+    <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
+    <link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
+    <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
