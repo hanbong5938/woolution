@@ -3,9 +3,7 @@ package com.woolution.shop.model;
 import lombok.Data;
 
 @Data
-public class SampleModel {
+public class PuppySpeciesModel {
     private int id;
-    private String comment;
-    private int price;
-
+    private String puppy_species_nm;
 }

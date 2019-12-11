@@ -124,5 +124,5 @@
     </div>
 </section>
 
-<script src="${contextPath}/js/serviceMgt/serviceMgtAnal.js"></script>
+<script src="${contextPath}/js/custMgt/custMgtAnal.js"></script>
 <script src="${contextPath}/plugins/chart.js/Chart.js"></script>

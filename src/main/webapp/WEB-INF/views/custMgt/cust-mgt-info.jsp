@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1><spring:message code="service"/> <spring:message code="mgt"/></h1>
+                <h1><spring:message code="cust"/> <spring:message code="mgt"/></h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/index">Home</a></li>
-                    <li class="breadcrumb-item active">DataTables</li>
+                    <li class="breadcrumb-item active"><spring:message code="cust"/> <spring:message code="info"/></li>
                 </ol>
             </div>
         </div>
@@ -43,12 +43,14 @@
                         <thead>
                         <tr>
                             <th><spring:message code="number"/></th>
-                            <th><spring:message code="kind"/></th>
-                            <th><spring:message code="desc"/></th>
-                            <th><spring:message code="price"/></th>
-                            <th><spring:message code="tet"/></th>
-                            <th><spring:message code="state"/></th>
+                            <th><spring:message code="nm"/></th>
+                            <th><spring:message code="species"/></th>
+                            <th><spring:message code="PhoneNo"/></th>
+                            <th><spring:message code="address"/></th>
+                            <th><spring:message code="sex"/></th>
+                            <th><spring:message code="birthDay"/></th>
                             <th><spring:message code="createAT"/></th>
+                            <th><spring:message code="parentNm"/></th>
                             <th><spring:message code="mod"/></th>
                         </tr>
                         </thead>
@@ -72,7 +74,7 @@
             <div class="modal-content">
                 <%--header--%>
                 <div class="modal-header d-flex bg-gray-dark justify-content-center text-center">
-                    <h3 class="modal-title"><i class="fas fa-edit"></i><spring:message code="service"/> <spring:message
+                    <h3 class="modal-title"><i class="fas fa-edit"></i><spring:message code="cust"/> <spring:message
                             code="reg"/></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
@@ -83,32 +85,40 @@
                     <div class="form-group">
                         <div class="input-group">
                             <input type="hidden" name="id">
-                            <input name="service_state" type="hidden" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="kind"/></label>
-                            <select name="service_category_id" class="form-control">
-                            </select>
+                            <label><spring:message code="species"/></label>
+                            <select name="puppy_species" class="form-control"></select>
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="desc"/></label>
-                            <textarea name="service_desc" class="form-control" rows="3"></textarea>
+                            <label><spring:message code="nm"/></label>
+                            <input name="cust_nm" type="text" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="price"/></label>
-                            <div class="input-group-prepend">
-                                <input name="service_price" type="number" class="form-control">
-                                <span class="input-group-text">￦</span>
+                            <label><spring:message code="PhoneNo"/></label>
+                            <input name="cust_no" type="tel" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="address"/></label>
+                            <input name="cust_address" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="parentNm"/></label>
+                            <input name="cust_parent_nm" type="text" class="form-control">
+                        </div>
+                        <div class="col-12 row">
+                            <div class="form-group col-9">
+                                <label><spring:message code="birthDay"/></label>
+                                <input name="cust_birthDay" type="date" class="form-control">
+                            </div>
+                            <div class="form-group col-3">
+                                <label><spring:message code="sex"/></label>
+                                <select name="cust_sex" class="form-control">
+                                    <option value="0">♂</option>
+                                    <option value="1">♀</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label><spring:message code="tet"/></label>
-                            <div class="input-group-append">
-                                <input name="service_tet" type="number" class="form-control">
-                                <span class="input-group-text">min</span>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <%--/.modal-body--%>
@@ -125,8 +135,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-hidden="true">
     <!--Modal: Login with Avatar Form-->
     <div class="modal-dialog modal-sm" role="document">
         <!--Content-->
@@ -137,14 +146,14 @@
             </div>
             <!--Body-->
             <div class="modal-body text-center mb-1">
-
                 <div class="md-form ml-0 mr-0">
-                    <label data-error="wrong" data-success="right" class="ml-0"><spring:message code="category"/>
+                    <label data-error="wrong" data-success="right" class="ml-0"><spring:message code="species"/>
                         <spring:message code="add"/></label>
-                    <input type="text" name="service_category_name" class="form-control form-control-sm validate ml-0">
+                    <input type="text" name="puppy_species_nm" class="form-control form-control-sm validate ml-0">
                 </div>
                 <div class="text-center mt-4">
-                    <button class="btn btn-flat btn-secondary mt-1" id="categoryAddBtn"><spring:message code="reg"/></button>
+                    <button class="btn btn-flat btn-secondary mt-1" id="categoryAddBtn"><spring:message
+                            code="reg"/></button>
                 </div>
             </div>
 
@@ -155,4 +164,4 @@
 <!--Modal: Login with Avatar Form-->
 
 
-<script src="${contextPath}/js/serviceMgt/serviceMgtInfo.js"></script>
+<script src="${contextPath}/js/custMgt/custMgtInfo.js"></script>
