@@ -65,7 +65,7 @@ dataTableService = (() => {
     function custEdit() {
         const selectRaw = $(this).closest('tr').data();
         const rawData = dataTableInfo.row(selectRaw).data();
-
+        console.log(rawData);
         $('#custMgtModal').modal();
 
         //버튼 보여주고 숨기기
@@ -75,12 +75,14 @@ dataTableService = (() => {
 
 
         //데이터 집어넣기
-        // $("input[name=id]").val(rawData.id);
-        // $('select[name=service_category_id]').val(rawData.service_category_id);
-        // $("textarea[name=service_desc]").val(rawData.service_desc);
-        // $("input[name=service_price]").val(rawData.service_price);
-        // $("input[name=service_tet]").val(rawData.service_tet);
-        // $("input[name=service_state]").val(rawData.service_state);
+        $("input[name=id]").val(rawData.id);
+        $('select[name=puppy_species_id]').val(rawData.puppy_species_id);
+        $("input[name=cust_nm]").val(rawData.cust_nm);
+        $("input[name=cust_no]").val(rawData.cust_no);
+        $("input[name=cust_address]").val(rawData.cust_address);
+        $("input[name=cust_parent_nm]").val(rawData.cust_parent_nm);
+        $("input[name=cust_birthDay]").val(rawData.cust_birthDay);
+        $("select[name=cust_sex]").val(rawData.cust_sex);
 
     }
 
@@ -91,7 +93,7 @@ dataTableService = (() => {
             url: '/cust-mgt/infoSpecies',
             dataType: "JSON",
             success: ((data) => {
-                console.log(data);
+                console.log(data[0].id);
                 for (let i = 0; i < data.length; i++) {
                     $('select[name=puppy_species_id]').append('<option value="' + data[i].id + '">' + data[i].puppy_species_nm + '</option>');
                 }
@@ -151,7 +153,7 @@ $("#tableRegBtn").click(() => {
 
     //초기화 위해서
     dataTableService.modalClose('#serviceMgtModal');
-    $('#serviceMgtModal').modal();
+    $('#custMgtModal').modal();
     $(".modal-footer > .btn-primary").show();
     $(".modal-footer > .btn-danger").hide();
     $(".modal-footer > .btn-info").hide();
@@ -169,20 +171,22 @@ $("#tableCategoryRegBtn").click(() => {
 //모달 등록 버튼 클릭이
 $(".modal-footer > .btn-primary").click(
     () => {
-        const serviceContent = {
-                service_category_id: $('select[name=service_category_id]').val(),
-                service_desc: $("textarea[name=service_desc]").val(),
-                service_price: $("input[name=service_price]").val(),
-                service_tet: $("input[name=service_tet]").val(),
-                service_state: $("input[name=service_state]").val(),
+        const custContent = {
+                puppy_species_id: $('select[name=puppy_species_id]').val(),
+                cust_nm: $("input[name=cust_nm]").val(),
+                cust_no: $("input[name=cust_no]").val(),
+                cust_address: $("input[name=cust_address]").val(),
+                cust_parent_nm: $("input[name=cust_parent_nm]").val(),
+                cust_birthDay: $("input[name=cust_birthDay]").val(),
+                cust_sex: $("select[name=cust_sex]").val()
             }
         ;
 
         //등록
-        dataTableService.custTableRegister(serviceContent);
+        dataTableService.custTableRegister(custContent);
 
         //모달 닫기, 빈칸 처리
-        dataTableService.modalClose('#serviceMgtModal');
+        dataTableService.modalClose('#custMgtModal');
 
     }
 );
@@ -190,20 +194,21 @@ $(".modal-footer > .btn-primary").click(
 //모달 수정
 $(".modal-footer > .btn-info").click(
     () => {
-        const serviceContent = {
-            // id: $("input[name=id]").val(),
-            // service_category_id: $('select[name=service_category_id]').val(),
-            // service_desc: $("textarea[name=service_desc]").val(),
-            // service_price: $("input[name=service_price]").val(),
-            // service_tet: $("input[name=service_tet]").val(),
-            // service_state: $("input[name=service_state]").val(),
+        const custContent = {
+            puppy_species_id: $('select[name=puppy_species_id]').val(),
+            cust_nm: $("input[name=cust_nm]").val(),
+            cust_no: $("input[name=cust_no]").val(),
+            cust_address: $("input[name=cust_address]").val(),
+            cust_parent_nm: $("input[name=cust_parent_nm]").val(),
+            cust_birthDay: $("input[name=cust_birthDay]").val(),
+            cust_sex: $("select[name=cust_sex]").val()
         };
 
         //등록
-        dataTableService.custTableMod(serviceContent);
+        dataTableService.custTableMod(custContent);
 
         //모달 닫기, 빈칸 처리
-        dataTableService.modalClose('#serviceMgtModal');
+        dataTableService.modalClose('#custMgtModal');
     }
 );
 
@@ -216,7 +221,7 @@ $(".modal-footer > .btn-danger").click(
         dataTableService.custTableDel(id);
 
         //모달 닫기, 빈칸 처리
-        dataTableService.modalClose('#serviceMgtModal');
+        dataTableService.modalClose('#custMgtModal');
     }
 );
 

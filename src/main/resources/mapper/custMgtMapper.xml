@@ -6,7 +6,7 @@
 
     <!--임시로 admin_id 1로 고정-->
     <insert id="infoInsert">
-        insert into cust (cust_nm, cust_no, cust_address, cust_sex, cust_birthDay, cust_creaetAT, cust_state,
+        insert into cust (cust_nm, cust_no, cust_address, cust_sex, cust_birthDay, cust_createAT, cust_state,
                           cust_parent_nm, puppy_species_id)
         VALUES (#{cust_nm}, #{cust_no}, #{cust_address}, #{cust_sex}, #{cust_birthDay}, now(), true, #{cust_parent_nm},
                 #{puppy_species_id})
@@ -19,7 +19,7 @@
                cust_address,
                cust_sex,
                cust_birthDay,
-               cust_creaetAT,
+               cust_createAT,
                cust_parent_nm,
                (select puppy_species_nm
                 from puppy_species
@@ -52,7 +52,7 @@
     </insert>
 
     <select id="infoSpecies" resultType="hashmap">
-        select puppy_species_nm
+        select id, puppy_species_nm
         from puppy_species
     </select>
 
