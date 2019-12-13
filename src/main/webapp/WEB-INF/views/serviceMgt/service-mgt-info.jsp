@@ -132,7 +132,6 @@
 
 <div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-    <!--Modal: Login with Avatar Form-->
     <div class="modal-dialog modal-sm" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -158,7 +157,6 @@
         <!--/.Content-->
     </div>
 </div>
-<!--Modal: Login with Avatar Form-->
 
 
 <script src="${contextPath}/js/serviceMgt/serviceMgtInfo.js"></script>

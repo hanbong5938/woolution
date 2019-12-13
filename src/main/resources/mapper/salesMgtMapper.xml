@@ -6,7 +6,7 @@
 
     <insert id="infoInsert">
         insert into sales (sales_price, sales_createAT, sales_state, sales_time, service_id, cust_id)
-        values (#{sales_price}, now(), #{sales_state}, #{sal_time}, #{service_id}, #{cust_id})
+        values (#{sales_price}, now(), 1, #{sales_time}, #{service_id}, #{cust_id})
     </insert>
 
     <select id="infoList" resultType="hashmap">
@@ -16,13 +16,41 @@
                sales_state,
                sales_time,
                service.service_nm as service_nm,
-               cust.cust_nm       as cust_nm
+               cust.cust_nm       as cust_nm,
+               service.id         as service_id,
+               cust.id            as cust_id
         from sales,
              cust,
              service
         where service_id = service.id
           and cust.id = cust_id
           and sales_state = 1
+    </select>
+
+    <!--    <update id="infoMod">-->
+    <!--        update service-->
+    <!--        set service_desc        = #{service_desc},-->
+    <!--            service_nm          = #{service_nm},-->
+    <!--            service_price       = #{service_price},-->
+    <!--            service_tet         = #{service_tet},-->
+    <!--            service_category_id = #{service_category_id}-->
+    <!--        where id = #{id}-->
+    <!--    </update>-->
+
+    <!--    <update id="infoDel">-->
+    <!--        update service-->
+    <!--        set service_state = false-->
+    <!--        where id = #{id}-->
+    <!--    </update>-->
+
+    <select id="infoServiceList" resultType="hashmap">
+        select id, service_nm
+        from service
+    </select>
+
+    <select id="infoCustList" resultType="hashmap">
+        select id, cust_nm
+        from cust
     </select>
 
 </mapper>

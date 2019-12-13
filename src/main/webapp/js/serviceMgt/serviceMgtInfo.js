@@ -62,28 +62,23 @@ dataTableService = (() => {
     }
 
 
-    function serviceEdit() {
-        const selectRaw = $(this).closest('tr').data();
-        const rawData = dataTableInfo.row(selectRaw).data();
+    function serviceEdit(_this) {
+        const rawData = dataTableInfo.row(_this).data();
 
-        modalInit('#serviceMgtModal');
         $('#serviceMgtModal').modal();
-        serviceTableCategory();
 
         //버튼 보여주고 숨기기
         $(".modal-footer > .btn-primary").hide();
         $(".modal-footer > .btn-danger").show();
         $(".modal-footer > .btn-info").show();
 
-
         //데이터 집어넣기
         $("input[name=id]").val(rawData.id);
-        $('select[name=service_category_id]').val(rawData.service_category_id);
+        $("select[name=service_category_id]").val(rawData.service_category_id);
         $("input[name=service_nm]").val(rawData.service_nm);
         $("textarea[name=service_desc]").val(rawData.service_desc);
         $("input[name=service_price]").val(rawData.service_price);
         $("input[name=service_tet]").val(rawData.service_tet);
-        $("input[name=service_state]").val(rawData.service_state);
 
     }
 
@@ -101,16 +96,10 @@ dataTableService = (() => {
         })
     }
 
-    //모달 close
+    //모달 close랑 초기화
     function modalClose(modalId) {
-        $(modalId).modal("toggle");
+        $(modalId).modal("toggle").find('input,textarea, select').val('');
     }
-
-    //모달 초기화
-    function modalInit(modalId) {
-        $(modalId).find('input,textarea, select').val('').find('option').remove();
-    }
-
     return {
         serviceTableRegister: serviceTableRegister,
         serviceTableMod: serviceTableMod,
@@ -119,9 +108,10 @@ dataTableService = (() => {
         serviceTableCategory: serviceTableCategory,
         modalClose: modalClose,
         categoryModalAdd: categoryModalAdd,
-        modalInit: modalInit
     }
 })();
+
+dataTableService.serviceTableCategory();
 
 //데이터 테이블 js이용
 dataTableInfo = $("#dataTableInfo").DataTable({
@@ -144,7 +134,7 @@ dataTableInfo = $("#dataTableInfo").DataTable({
         {
             "data": null,
             "className": "center",
-            "defaultContent": "<a onclick='dataTableService.serviceEdit()'>Edit</a>"
+            "defaultContent": "<a onclick='const _this = $(this).closest(`tr`); dataTableService.serviceEdit(_this)'>Edit</a>"
         }
     ],
     select: true,
@@ -154,14 +144,14 @@ dataTableInfo = $("#dataTableInfo").DataTable({
 $("#tableRegBtn").click(() => {
 
     //모달 초기화
-    dataTableService.modalInit('#serviceMgtModal');
+    dataTableService.modalClose('#serviceMgtModal');
     $('#serviceMgtModal').modal();
-    dataTableService.serviceTableCategory();
     $(".modal-footer > .btn-primary").show();
     $(".modal-footer > .btn-danger").hide();
     $(".modal-footer > .btn-info").hide();
 });
 
+//카테고리 등록
 $("#tableCategoryRegBtn").click(() => {
 
     dataTableService.modalClose('#categoryAddModal');
@@ -230,7 +220,12 @@ $(".modal-footer > .btn-danger").click(
 $("#categoryAddBtn").click(
     () => {
         const categoryData = {service_category_name: $("input[name=service_category_name]").val()};
+
         dataTableService.categoryModalAdd(categoryData);
+
+        $('#serviceMgtModal').find('option').remove();
+
+        dataTableService.serviceTableCategory();
 
         dataTableService.modalClose('#categoryAddModal');
     }

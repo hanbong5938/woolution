@@ -116,7 +116,7 @@
                                 <label><spring:message code="sex"/></label>
                                 <select name="cust_sex" class="form-control">
                                     <option value="남">♂</option>
-                                    <option value="">♀</option>
+                                    <option value="여">♀</option>
                                 </select>
                             </div>
                         </div>
@@ -141,7 +141,6 @@
 </div>
 
 <div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <!--Modal: Login with Avatar Form-->
     <div class="modal-dialog modal-sm" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -166,7 +165,6 @@
         <!--/.Content-->
     </div>
 </div>
-<!--Modal: Login with Avatar Form-->
 
 
 <script src="${contextPath}/js/custMgt/custMgtInfo.js"></script>

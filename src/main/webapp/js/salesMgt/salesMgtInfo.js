@@ -46,44 +46,22 @@ dataTableService = (() => {
         })
     }
 
-    function categoryModalAdd(categoryData) {
-        $.ajax({
-            type: 'post',
-            url: '/sales-mgt/infoCategoryAdd',
-            data: JSON.stringify(categoryData),
-            contentType: "application/json; charset=uft-8",
-            success: (() => {
+    function salesEdit(_this) {
+        const rawData = dataTableInfo.row(_this).data();
 
-            }),
-            error: () => {
-
-            }
-        })
-    }
-
-
-    function salesEdit() {
-        const selectRaw = $(this).closest('tr').data();
-        const rawData = dataTableInfo.row(selectRaw).data();
-
-        modalInit('#salesMgtModal');
         $('#salesMgtModal').modal();
-        salesTableCategory();
 
         //버튼 보여주고 숨기기
         $(".modal-footer > .btn-primary").hide();
         $(".modal-footer > .btn-danger").show();
         $(".modal-footer > .btn-info").show();
 
-
         // //데이터 집어넣기
-        // $("input[name=id]").val(rawData.id);
-        // $('select[name=service_category_id]').val(rawData.service_category_id);
-        // $("input[name=service_nm]").val(rawData.service_nm);
-        // $("textarea[name=service_desc]").val(rawData.service_desc);
-        // $("input[name=service_price]").val(rawData.service_price);
-        // $("input[name=service_tet]").val(rawData.service_tet);
-        // $("input[name=service_state]").val(rawData.service_state);
+        $('input[name=id]').val(rawData.id);
+        $('select[name=service_id]').val(rawData.service_id);
+        $("select[name=cust_id]").val(rawData.cust_id);
+        $("input[name=sales_price]").val(rawData.sales_price);
+        $("input[name=sales_time]").val(rawData.sales_time);
 
     }
 
@@ -91,24 +69,30 @@ dataTableService = (() => {
     function salesTableCategory() {
         $.ajax({
             type: 'get',
-            url: '/sales-mgt/infoCategory',
+            url: '/sales-mgt/infoServiceList',
             dataType: "JSON",
             success: ((data) => {
                 for (let i = 0; i < data.length; i++) {
-                    $('select[name=service_category_id]').append('<option value="' + data[i].id + '">' + data[i].service_category_name + '</option>');
+                    $('select[name=service_id]').append('<option value="' + data[i].id + '">' + data[i].service_nm + '</option>');
+                }
+            })
+        });
+
+        $.ajax({
+            type: 'get',
+            url: '/sales-mgt/infoCustList',
+            dataType: "JSON",
+            success: ((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    $('select[name=cust_id]').append('<option value="' + data[i].id + '">' + data[i].cust_nm + '</option>');
                 }
             })
         })
     }
 
-    //모달 close
+    //모달 close랑 초기화
     function modalClose(modalId) {
-        $(modalId).modal("toggle");
-    }
-
-    //모달 초기화
-    function modalInit(modalId) {
-        $(modalId).find('input,textarea, select').val('').find('option').remove();
+        $(modalId).modal("toggle").find('input,textarea, select').val('');
     }
 
     return {
@@ -118,10 +102,10 @@ dataTableService = (() => {
         salesEdit: salesEdit,
         salesTableCategory: salesTableCategory,
         modalClose: modalClose,
-        categoryModalAdd: categoryModalAdd,
-        modalInit: modalInit
     }
 })();
+
+dataTableService.salesTableCategory();
 
 //데이터 테이블 js이용
 dataTableInfo = $("#dataTableInfo").DataTable({
@@ -135,15 +119,13 @@ dataTableInfo = $("#dataTableInfo").DataTable({
     columns: [
         {data: "id"},
         {data: "service_nm"},
-        {data: "sales_createAT"},
-        {data: "sales_state"},
         {data: "cust_nm"},
         {data: "sales_price"},
         {data: "sales_time"},
         {
             "data": null,
             "className": "center",
-            "defaultContent": "<a onclick='dataTableService.salesEdit()'>Edit</a>"
+            "defaultContent": "<a onclick='const _this = $(this).closest(`tr`); dataTableService.salesEdit(_this)'>Edit</a>"
         }
     ],
     select: true,
@@ -153,61 +135,49 @@ dataTableInfo = $("#dataTableInfo").DataTable({
 $("#tableRegBtn").click(() => {
 
     //모달 초기화
-    dataTableService.modalInit('#serviceMgtModal');
-    $('#serviceMgtModal').modal();
-    dataTableService.serviceTableCategory();
+    dataTableService.modalClose('#salesMgtModal');
+    $('#salesMgtModal').modal();
+    dataTableService.salesTableCategory();
     $(".modal-footer > .btn-primary").show();
     $(".modal-footer > .btn-danger").hide();
     $(".modal-footer > .btn-info").hide();
-});
-
-$("#tableCategoryRegBtn").click(() => {
-
-    dataTableService.modalClose('#categoryAddModal');
-
-    $('#categoryAddModal').modal();
-
 });
 
 
 //모달 등록 버튼 클릭이
 $(".modal-footer > .btn-primary").click(
     () => {
-        const serviceContent = {
-            service_category_id: $('select[name=service_category_id]').val(),
-            service_nm: $("input[name=service_nm]").val(),
-            service_desc: $("textarea[name=service_desc]").val(),
-            service_price: $("input[name=service_price]").val(),
-            service_tet: $("input[name=service_tet]").val(),
-            service_state: $("input[name=service_state]").val(),
+        const salesContent = {
+            service_id: $('select[name=service_id]').val(),
+            cust_id: $("select[name=cust_id]").val(),
+            sales_price: $("input[name=sales_price]").val(),
+            sales_time: $("input[name=sales_time]").val(),
         };
 
         //등록
-        dataTableService.serviceTableRegister(serviceContent);
+        dataTableService.salesTableRegister(salesContent);
 
         //모달 닫기
-        dataTableService.modalClose('#serviceMgtModal');
+        dataTableService.modalClose('#salesMgtModal');
 
     }
 );
 //모달 수정
 $(".modal-footer > .btn-info").click(
     () => {
-        const serviceContent = {
+        const salesContent = {
             id: $("input[name=id]").val(),
-            service_category_id: $('select[name=service_category_id]').val(),
-            service_nm: $("input[name=service_nm]").val(),
-            service_desc: $("textarea[name=service_desc]").val(),
-            service_price: $("input[name=service_price]").val(),
-            service_tet: $("input[name=service_tet]").val(),
-            service_state: $("input[name=service_state]").val(),
+            service_id: $('select[name=service_id]').val(),
+            cust_id: $("select[name=cust_id]").val(),
+            sales_price: $("input[name=sales_price]").val(),
+            sales_time: $("input[name=sales_time]").val(),
         };
 
         //등록
-        dataTableService.serviceTableMod(serviceContent);
+        dataTableService.salesTableMod(salesContent);
 
         //모달 닫기
-        dataTableService.modalClose('#serviceMgtModal');
+        dataTableService.modalClose('#salesMgtModal');
     }
 );
 
@@ -217,20 +187,9 @@ $(".modal-footer > .btn-danger").click(
         const id = $("input[name=id]").val();
 
         //삭제
-        dataTableService.serviceTableDel(id);
+        dataTableService.salesTableDel(id);
 
         //모달 닫기
-        dataTableService.modalClose('#serviceMgtModal');
-    }
-);
-
-
-//카테고리 모달 추가
-$("#categoryAddBtn").click(
-    () => {
-        const categoryData = {service_category_name: $("input[name=service_category_name]").val()};
-        dataTableService.categoryModalAdd(categoryData);
-
-        dataTableService.modalClose('#categoryAddModal');
+        dataTableService.modalClose('#salesMgtModal');
     }
 );
