@@ -1,10 +1,10 @@
 dataTableService = (() => {
 
-    function serviceTableRegister(serviceContent) {
+    function salesTableRegister(salesContent) {
         $.ajax({
             type: 'post',
-            url: '/service-mgt/infoInsert',
-            data: JSON.stringify(serviceContent),
+            url: '/sales-mgt/infoInsert',
+            data: JSON.stringify(salesContent),
             contentType: "application/json; charset=utf-8",
             success: (() => {
                 //다시 불러오기
@@ -16,11 +16,11 @@ dataTableService = (() => {
     }
 
 
-    function serviceTableMod(serviceContent) {
+    function salesTableMod(salesContent) {
         $.ajax({
             type: 'patch',
-            url: '/service-mgt/infoMod',
-            data: JSON.stringify(serviceContent),
+            url: '/sales-mgt/infoMod',
+            data: JSON.stringify(salesContent),
             contentType: "application/json; charset=utf-8",
             success: (() => {
                 //다시 불러오기
@@ -32,10 +32,10 @@ dataTableService = (() => {
     }
 
 
-    function serviceTableDel(id) {
+    function salesTableDel(id) {
         $.ajax({
             type: 'patch',
-            url: '/service-mgt/infoDel',
+            url: '/sales-mgt/infoDel',
             data: JSON.stringify(id),
             contentType: "application/json; charset=uft-8",
             success: ((result, status, xhr) => {
@@ -49,7 +49,7 @@ dataTableService = (() => {
     function categoryModalAdd(categoryData) {
         $.ajax({
             type: 'post',
-            url: '/service-mgt/infoCategoryAdd',
+            url: '/sales-mgt/infoCategoryAdd',
             data: JSON.stringify(categoryData),
             contentType: "application/json; charset=uft-8",
             success: (() => {
@@ -62,13 +62,13 @@ dataTableService = (() => {
     }
 
 
-    function serviceEdit() {
+    function salesEdit() {
         const selectRaw = $(this).closest('tr').data();
         const rawData = dataTableInfo.row(selectRaw).data();
 
-        modalInit('#serviceMgtModal');
-        $('#serviceMgtModal').modal();
-        serviceTableCategory();
+        modalInit('#salesMgtModal');
+        $('#salesMgtModal').modal();
+        salesTableCategory();
 
         //버튼 보여주고 숨기기
         $(".modal-footer > .btn-primary").hide();
@@ -76,22 +76,22 @@ dataTableService = (() => {
         $(".modal-footer > .btn-info").show();
 
 
-        //데이터 집어넣기
-        $("input[name=id]").val(rawData.id);
-        $('select[name=service_category_id]').val(rawData.service_category_id);
-        $("input[name=service_nm]").val(rawData.service_nm);
-        $("textarea[name=service_desc]").val(rawData.service_desc);
-        $("input[name=service_price]").val(rawData.service_price);
-        $("input[name=service_tet]").val(rawData.service_tet);
-        $("input[name=service_state]").val(rawData.service_state);
+        // //데이터 집어넣기
+        // $("input[name=id]").val(rawData.id);
+        // $('select[name=service_category_id]').val(rawData.service_category_id);
+        // $("input[name=service_nm]").val(rawData.service_nm);
+        // $("textarea[name=service_desc]").val(rawData.service_desc);
+        // $("input[name=service_price]").val(rawData.service_price);
+        // $("input[name=service_tet]").val(rawData.service_tet);
+        // $("input[name=service_state]").val(rawData.service_state);
 
     }
 
     //카테고리 list
-    function serviceTableCategory() {
+    function salesTableCategory() {
         $.ajax({
             type: 'get',
-            url: '/service-mgt/infoCategory',
+            url: '/sales-mgt/infoCategory',
             dataType: "JSON",
             success: ((data) => {
                 for (let i = 0; i < data.length; i++) {
@@ -112,11 +112,11 @@ dataTableService = (() => {
     }
 
     return {
-        serviceTableRegister: serviceTableRegister,
-        serviceTableMod: serviceTableMod,
-        serviceTableDel: serviceTableDel,
-        serviceEdit: serviceEdit,
-        serviceTableCategory: serviceTableCategory,
+        salesTableRegister: salesTableRegister,
+        salesTableMod: salesTableMod,
+        salesTableDel: salesTableDel,
+        salesEdit: salesEdit,
+        salesTableCategory: salesTableCategory,
         modalClose: modalClose,
         categoryModalAdd: categoryModalAdd,
         modalInit: modalInit
@@ -127,24 +127,23 @@ dataTableService = (() => {
 dataTableInfo = $("#dataTableInfo").DataTable({
     ajax: {
         "type": "GET",
-        "url": "/service-mgt/infoList",
+        "url": "/sales-mgt/infoList",
         "dataType": "JSON",
         dataSrc: "",
         destroy: true,
     },
     columns: [
         {data: "id"},
-        {data: "service_category_name"},
         {data: "service_nm"},
-        {data: "service_desc"},
-        {data: "service_price"},
-        {data: "service_tet"},
-        {data: "service_state", visible: false},
-        {data: "service_createAT"},
+        {data: "sales_createAT"},
+        {data: "sales_state"},
+        {data: "cust_nm"},
+        {data: "sales_price"},
+        {data: "sales_time"},
         {
             "data": null,
             "className": "center",
-            "defaultContent": "<a onclick='dataTableService.serviceEdit()'>Edit</a>"
+            "defaultContent": "<a onclick='dataTableService.salesEdit()'>Edit</a>"
         }
     ],
     select: true,

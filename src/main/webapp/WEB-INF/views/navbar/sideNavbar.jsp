@@ -114,9 +114,37 @@
                     </ul>
                 </li>
 
+                <%--service-mgt--%>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            <spring:message code="sales"/> <spring:message code="mgt"/>
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="salesMgtInfo" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="sales"/> <spring:message code="info"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="salesMgtAnal" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p><spring:message code="sales"/> <spring:message code="anal"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                    <!-- /.sidebar-menu -->
             </ul>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>

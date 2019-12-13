@@ -6,9 +6,11 @@
 
     <!--임시로 admin_id 1로 고정-->
     <insert id="infoInsert">
-        insert into cust (cust_nm, cust_no, cust_address, cust_sex, cust_birthDay, cust_createAT, cust_state,
+        insert into cust (cust_nm, cust_no, cust_address, cust_sex, cust_birthDay, cust_comment, cust_createAT,
+                          cust_state,
                           cust_parent_nm, puppy_species_id)
-        VALUES (#{cust_nm}, #{cust_no}, #{cust_address}, #{cust_sex}, #{cust_birthDay}, now(), true, #{cust_parent_nm},
+        VALUES (#{cust_nm}, #{cust_no}, #{cust_address}, #{cust_sex}, #{cust_birthDay}, #{cust_comment}, now(), true,
+                #{cust_parent_nm},
                 #{puppy_species_id})
     </insert>
 
@@ -19,8 +21,10 @@
                cust_address,
                cust_sex,
                cust_birthDay,
+               cust_comment,
                cust_createAT,
                cust_parent_nm,
+               puppy_species_id,
                (select puppy_species_nm
                 from puppy_species
                 where puppy_species_id = puppy_species.id) as puppy_species_nm
@@ -35,6 +39,7 @@
             cust_address     = #{cust_adrress},
             cust_sex         = #{cust_sex},
             cust_birthDay    = #{cust_birthDay},
+            cust_comment     = #{cust_commnet},
             cust_parent_nm   = #{cust_parentNm},
             puppy_species_id = #{puppy_speciesId}
         where id = #{id}

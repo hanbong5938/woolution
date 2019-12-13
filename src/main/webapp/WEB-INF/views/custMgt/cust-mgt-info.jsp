@@ -51,6 +51,7 @@
                             <th><spring:message code="birthDay"/></th>
                             <th><spring:message code="createAT"/></th>
                             <th><spring:message code="parentNm"/></th>
+                            <th><spring:message code="memo"/></th>
                             <th><spring:message code="mod"/></th>
                         </tr>
                         </thead>
@@ -118,6 +119,10 @@
                                     <option value="">♀</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="cust"/> <spring:message code="memo"/></label>
+                            <textarea name="cust_comment" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                 </div>

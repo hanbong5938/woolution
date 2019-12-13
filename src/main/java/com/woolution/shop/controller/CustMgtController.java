@@ -2,7 +2,6 @@ package com.woolution.shop.controller;
 
 import com.woolution.shop.model.CustMgtModel;
 import com.woolution.shop.model.PuppySpeciesModel;
-import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.service.CustMgtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

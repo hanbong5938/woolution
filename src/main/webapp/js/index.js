@@ -49,6 +49,15 @@ $('#serviceMgtAnal').click(function () {
 });
 //--serviceMGt
 
+//salesMGt
+$('#salesMgtInfo').click(function () {
+    $(".content-wrapper").load("/sales-mgt/info?lang=" + getCookie('APPLICATION_LOCALE'));
+});
+
+$('#salesMgtAnal').click(function () {
+    $(".content-wrapper").load("/sales-mgt/anal?lang=" + getCookie('APPLICATION_LOCALE'));
+});
+//--salesMGt
 
 //language
 $('.set-language').click(function () {

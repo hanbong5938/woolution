@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woolution.shop.mapper.SalesMapper">
+
+    <insert id="infoInsert">
+        insert into sales (sales_price, sales_createAT, sales_state, sales_time, service_id, cust_id)
+        values (#{sales_price}, now(), #{sales_state}, #{sal_time}, #{service_id}, #{cust_id})
+    </insert>
+
+    <select id="infoList" resultType="hashmap">
+        select sales.id,
+               sales_price,
+               sales_createAT,
+               sales_state,
+               sales_time,
+               service.service_nm as service_nm,
+               cust.cust_nm       as cust_nm
+        from sales,
+             cust,
+             service
+        where service_id = service.id
+          and cust.id = cust_id
+          and sales_state = 1
+    </select>
+
+</mapper>

@@ -83,6 +83,7 @@ dataTableService = (() => {
         $("input[name=cust_parent_nm]").val(rawData.cust_parent_nm);
         $("input[name=cust_birthDay]").val(rawData.cust_birthDay);
         $("select[name=cust_sex]").val(rawData.cust_sex);
+        $("textarea[name=cust_comment]").val(rawData.cust_comment);
 
     }
 
@@ -139,6 +140,7 @@ dataTableInfo = $("#dataTableInfo").DataTable({
         {data: "cust_birthDay"},
         {data: "cust_createAT"},
         {data: "cust_parent_nm"},
+        {data: "cust_comment"},
         {
             "data": null,
             "className": "center",
@@ -178,6 +180,7 @@ $(".modal-footer > .btn-primary").click(
                 cust_address: $("input[name=cust_address]").val(),
                 cust_parent_nm: $("input[name=cust_parent_nm]").val(),
                 cust_birthDay: $("input[name=cust_birthDay]").val(),
+                cust_comment: $("textarea[name=cust_comment]").val(),
                 cust_sex: $("select[name=cust_sex]").val()
             }
         ;
@@ -201,6 +204,7 @@ $(".modal-footer > .btn-info").click(
             cust_address: $("input[name=cust_address]").val(),
             cust_parent_nm: $("input[name=cust_parent_nm]").val(),
             cust_birthDay: $("input[name=cust_birthDay]").val(),
+            cust_comment: $("textarea[name=cust_comment]").val(),
             cust_sex: $("select[name=cust_sex]").val()
         };
 

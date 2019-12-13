@@ -25,7 +25,6 @@ public class ServiceMgtController {
     @PostMapping(value = "/infoInsert", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> infoInsert(@RequestBody ServiceMgtModel serviceMgtModel) {
         int count = serviceMgtService.infoInsert(serviceMgtModel);
-
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
