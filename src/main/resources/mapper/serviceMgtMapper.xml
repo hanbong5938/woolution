@@ -20,7 +20,7 @@
                service_price,
                service_tet,
                service_state,
-               service_createAT,
+               date_format(service_createAT, '%Y-%m-%d') as service_createAT,
                admin_id,
                service_category_id,
                (select service_category_name
@@ -46,7 +46,6 @@
         where id = #{id}
     </update>
 
-    <!--category createAT는 현재 사용할일 없어서 제거-->
     <select id="infoCategory" resultType="hashmap">
         select id, service_category_name
         from service_category;

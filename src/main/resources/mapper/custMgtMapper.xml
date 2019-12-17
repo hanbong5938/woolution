@@ -22,7 +22,7 @@
                cust_sex,
                cust_birthDay,
                cust_comment,
-               cust_createAT,
+               date_format(cust_createAT, '%Y-%m-%d') as cust_createAT,
                cust_parent_nm,
                puppy_species_id,
                (select puppy_species_nm

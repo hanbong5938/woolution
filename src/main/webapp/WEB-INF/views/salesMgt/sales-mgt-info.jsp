@@ -44,6 +44,8 @@
                             <th><spring:message code="cust"/> <spring:message code="nm"/></th>
                             <th><spring:message code="price"/></th>
                             <th><spring:message code="sales"/> <spring:message code="time"/></th>
+                            <th><spring:message code="sales"/> <spring:message code="number"/></th>
+                            <th><spring:message code="cust"/> <spring:message code="number"/></th>
                             <th><spring:message code="edit"/></th>
                         </tr>
                         </thead>

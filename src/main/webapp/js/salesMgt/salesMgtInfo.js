@@ -118,10 +118,12 @@ dataTableInfo = $("#dataTableInfo").DataTable({
     },
     columns: [
         {data: "id"},
-        {data: "service_nm"},
-        {data: "cust_nm"},
-        {data: "sales_price"},
-        {data: "sales_time"},
+        {data: "service_nm", className: "serviceNm"},
+        {data: "cust_nm", className: "custNm"},
+        {data: "sales_price", searchable: false},
+        {data: "sales_time", searchable: false},
+        {data: "service_id", visible: false, searchable: false},
+        {data: "cust_id", visible: false, searchable: false},
         {
             "data": null,
             "className": "center",
@@ -137,7 +139,6 @@ $("#tableRegBtn").click(() => {
     //모달 초기화
     dataTableService.modalClose('#salesMgtModal');
     $('#salesMgtModal').modal();
-    dataTableService.salesTableCategory();
     $(".modal-footer > .btn-primary").show();
     $(".modal-footer > .btn-danger").hide();
     $(".modal-footer > .btn-info").hide();
@@ -154,6 +155,7 @@ $(".modal-footer > .btn-primary").click(
             sales_time: $("input[name=sales_time]").val(),
         };
 
+        console.log(salesContent)
         //등록
         dataTableService.salesTableRegister(salesContent);
 
@@ -193,3 +195,17 @@ $(".modal-footer > .btn-danger").click(
         dataTableService.modalClose('#salesMgtModal');
     }
 );
+
+//서비스 아이디 모달 조회
+$('#dataTableInfo tbody').on('dblclick', '.serviceNm', function () {
+    const _this = $(this).closest(`tr`)
+    const sampleData = dataTableInfo.row(_this).data()["service_id"];
+    console.log(sampleData);
+});
+
+//고객 아이디 모달 조회
+$('#dataTableInfo tbody').on('dblclick', '.custNm', function () {
+    const _this = $(this).closest(`tr`)
+    const sampleData = dataTableInfo.row(_this).data()["cust_id"];
+    console.log(sampleData);
+});

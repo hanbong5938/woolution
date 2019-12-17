@@ -12,7 +12,7 @@
     <select id="infoList" resultType="hashmap">
         select sales.id,
                sales_price,
-               sales_createAT,
+               date_format(sales_createAT, '%Y-%m-%d') as sales_createAT,
                sales_state,
                sales_time,
                service.service_nm as service_nm,
