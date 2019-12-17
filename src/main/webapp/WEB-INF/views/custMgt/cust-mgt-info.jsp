@@ -51,6 +51,7 @@
                             <th><spring:message code="birthDay"/></th>
                             <th><spring:message code="createAT"/></th>
                             <th><spring:message code="parentNm"/></th>
+                            <th><spring:message code="memo"/></th>
                             <th><spring:message code="mod"/></th>
                         </tr>
                         </thead>
@@ -115,9 +116,13 @@
                                 <label><spring:message code="sex"/></label>
                                 <select name="cust_sex" class="form-control">
                                     <option value="남">♂</option>
-                                    <option value="">♀</option>
+                                    <option value="여">♀</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="cust"/> <spring:message code="memo"/></label>
+                            <textarea name="cust_comment" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -136,7 +141,6 @@
 </div>
 
 <div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <!--Modal: Login with Avatar Form-->
     <div class="modal-dialog modal-sm" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -161,7 +165,6 @@
         <!--/.Content-->
     </div>
 </div>
-<!--Modal: Login with Avatar Form-->
 
 
 <script src="${contextPath}/js/custMgt/custMgtInfo.js"></script>

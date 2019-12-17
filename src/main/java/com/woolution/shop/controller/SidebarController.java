@@ -51,5 +51,17 @@ public class SidebarController {
     }
     //.--service mgt
 
+    //--sales mgt
+    @GetMapping("/sales-mgt/info")
+    public String salesMgtInfo() {
+        return "/salesMgt/sales-mgt-info";
+    }
+
+    @GetMapping("/sales-mgt/anal")
+    public String saleseMgtAnal() {
+        return "/salesMgt/sales-mgt-anal";
+    }
+    //.--sales mgt
+
 
 }

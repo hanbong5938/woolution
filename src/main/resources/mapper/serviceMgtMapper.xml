@@ -6,16 +6,17 @@
 
     <!--임시로 admin_id 1로 고정-->
     <insert id="infoInsert">
-        insert into service (service_category_id, service_desc, service_price, service_tet, service_state,
+        insert into service (service_category_id, service_nm, service_desc, service_price, service_tet, service_state,
                              service_createAT,
                              admin_id)
-        VALUES (#{service_category_id}, #{service_desc}, #{service_price}, #{service_tet}, true,
+        VALUES (#{service_category_id}, #{service_nm}, #{service_desc}, #{service_price}, #{service_tet}, true,
                 now(), 1)
     </insert>
 
     <select id="infoList" resultType="hashmap">
         select id,
                service_desc,
+               service_nm,
                service_price,
                service_tet,
                service_state,
@@ -32,6 +33,7 @@
     <update id="infoMod">
         update service
         set service_desc        = #{service_desc},
+            service_nm          = #{service_nm},
             service_price       = #{service_price},
             service_tet         = #{service_tet},
             service_category_id = #{service_category_id}

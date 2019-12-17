@@ -44,6 +44,7 @@
                         <tr>
                             <th><spring:message code="number"/></th>
                             <th><spring:message code="kind"/></th>
+                            <th><spring:message code="nm"/></th>
                             <th><spring:message code="desc"/></th>
                             <th><spring:message code="price"/></th>
                             <th><spring:message code="tet"/></th>
@@ -91,6 +92,10 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label><spring:message code="service"/> <spring:message code="nm"/></label>
+                            <input name="service_nm" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label><spring:message code="service"/> <spring:message code="desc"/></label>
                             <textarea name="service_desc" class="form-control" rows="3"></textarea>
                         </div>
@@ -127,7 +132,6 @@
 
 <div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-    <!--Modal: Login with Avatar Form-->
     <div class="modal-dialog modal-sm" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -144,7 +148,8 @@
                     <input type="text" name="service_category_name" class="form-control form-control-sm validate ml-0">
                 </div>
                 <div class="text-center mt-4">
-                    <button class="btn btn-flat btn-secondary mt-1" id="categoryAddBtn"><spring:message code="reg"/></button>
+                    <button class="btn btn-flat btn-secondary mt-1" id="categoryAddBtn"><spring:message
+                            code="reg"/></button>
                 </div>
             </div>
 
@@ -152,7 +157,6 @@
         <!--/.Content-->
     </div>
 </div>
-<!--Modal: Login with Avatar Form-->
 
 
 <script src="${contextPath}/js/serviceMgt/serviceMgtInfo.js"></script>

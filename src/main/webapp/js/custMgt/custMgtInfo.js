@@ -62,10 +62,9 @@ dataTableService = (() => {
     }
 
 
-    function custEdit() {
-        const selectRaw = $(this).closest('tr').data();
-        const rawData = dataTableInfo.row(selectRaw).data();
-        console.log(rawData);
+    function custEdit(_this) {
+        const rawData = dataTableInfo.row(_this).data();
+
         $('#custMgtModal').modal();
 
         //버튼 보여주고 숨기기
@@ -73,7 +72,7 @@ dataTableService = (() => {
         $(".modal-footer > .btn-danger").show();
         $(".modal-footer > .btn-info").show();
 
-
+        console.log(rawData);
         //데이터 집어넣기
         $("input[name=id]").val(rawData.id);
         $('select[name=puppy_species_id]').val(rawData.puppy_species_id);
@@ -83,6 +82,7 @@ dataTableService = (() => {
         $("input[name=cust_parent_nm]").val(rawData.cust_parent_nm);
         $("input[name=cust_birthDay]").val(rawData.cust_birthDay);
         $("select[name=cust_sex]").val(rawData.cust_sex);
+        $("textarea[name=cust_comment]").val(rawData.cust_comment);
 
     }
 
@@ -93,7 +93,6 @@ dataTableService = (() => {
             url: '/cust-mgt/infoSpecies',
             dataType: "JSON",
             success: ((data) => {
-                console.log(data[0].id);
                 for (let i = 0; i < data.length; i++) {
                     $('select[name=puppy_species_id]').append('<option value="' + data[i].id + '">' + data[i].puppy_species_nm + '</option>');
                 }
@@ -139,10 +138,11 @@ dataTableInfo = $("#dataTableInfo").DataTable({
         {data: "cust_birthDay"},
         {data: "cust_createAT"},
         {data: "cust_parent_nm"},
+        {data: "cust_comment"},
         {
             "data": null,
             "className": "center",
-            "defaultContent": "<a onclick='dataTableService.custEdit()'>Edit</a>"
+            "defaultContent": "<a onclick='const _this = $(this).closest(`tr`); dataTableService.custEdit(_this)'>Edit</a>"
         }
     ],
     select: true,
@@ -152,7 +152,7 @@ dataTableInfo = $("#dataTableInfo").DataTable({
 $("#tableRegBtn").click(() => {
 
     //초기화 위해서
-    dataTableService.modalClose('#serviceMgtModal');
+    dataTableService.modalClose('#custMgtModal');
     $('#custMgtModal').modal();
     $(".modal-footer > .btn-primary").show();
     $(".modal-footer > .btn-danger").hide();
@@ -178,6 +178,7 @@ $(".modal-footer > .btn-primary").click(
                 cust_address: $("input[name=cust_address]").val(),
                 cust_parent_nm: $("input[name=cust_parent_nm]").val(),
                 cust_birthDay: $("input[name=cust_birthDay]").val(),
+                cust_comment: $("textarea[name=cust_comment]").val(),
                 cust_sex: $("select[name=cust_sex]").val()
             }
         ;
@@ -201,6 +202,7 @@ $(".modal-footer > .btn-info").click(
             cust_address: $("input[name=cust_address]").val(),
             cust_parent_nm: $("input[name=cust_parent_nm]").val(),
             cust_birthDay: $("input[name=cust_birthDay]").val(),
+            cust_comment: $("textarea[name=cust_comment]").val(),
             cust_sex: $("select[name=cust_sex]").val()
         };
 
@@ -230,8 +232,12 @@ $(".modal-footer > .btn-danger").click(
 $("#categoryAddBtn").click(
     () => {
         const categoryData = {puppy_species_nm: $("input[name=puppy_species_nm]").val()};
-        // console.log(categoryData.puppy_species_nm);
+
         dataTableService.speciesModalAdd(categoryData);
+
+        $('#custMgtModal').find('option').remove();
+
+        dataTableService.custTableSpecies();
 
         dataTableService.modalClose('#categoryAddModal');
     }

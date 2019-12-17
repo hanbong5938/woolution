@@ -12,7 +12,8 @@ public class CustMgtModel {
     private int cust_no;
     private String cust_address;
     private String cust_sex;
-    private Date cust_birthDay;
+    private String cust_birthDay;
+    private String cust_comment;
     private Timestamp cust_createAT;
     private boolean cust_state;
     private String cust_parent_nm;
