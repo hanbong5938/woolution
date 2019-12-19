@@ -12,13 +12,13 @@
     <select id="infoList" resultType="hashmap">
         select sales.id,
                sales_price,
-               date_format(sales_createAT, '%Y-%m-%d') as sales_createAT,
+               date_format(sales_createAT, '%Y-%m-%d')   as sales_createAT,
                sales_state,
-               sales_time,
-               service.service_nm as service_nm,
-               cust.cust_nm       as cust_nm,
-               service.id         as service_id,
-               cust.id            as cust_id
+               date_format(sales_time, '%Y-%m-%dT%h:%i') as sales_time,
+               service.service_nm                        as service_nm,
+               cust.cust_nm                              as cust_nm,
+               service.id                                as service_id,
+               cust.id                                   as cust_id
         from sales,
              cust,
              service
@@ -27,21 +27,20 @@
           and sales_state = 1
     </select>
 
-    <!--    <update id="infoMod">-->
-    <!--        update service-->
-    <!--        set service_desc        = #{service_desc},-->
-    <!--            service_nm          = #{service_nm},-->
-    <!--            service_price       = #{service_price},-->
-    <!--            service_tet         = #{service_tet},-->
-    <!--            service_category_id = #{service_category_id}-->
-    <!--        where id = #{id}-->
-    <!--    </update>-->
+    <update id="infoMod">
+        update sales
+        set service_id  = #{service_id},
+            cust_id     = #{cust_id},
+            sales_price = #{sales_price},
+            sales_time  = #{sales_time}
+        where id = #{id}
+    </update>
 
-    <!--    <update id="infoDel">-->
-    <!--        update service-->
-    <!--        set service_state = false-->
-    <!--        where id = #{id}-->
-    <!--    </update>-->
+    <update id="infoDel">
+        update sales
+        set sales_state = false
+        where id = #{id}
+    </update>
 
     <select id="infoServiceList" resultType="hashmap">
         select id, service_nm

@@ -1,5 +1,7 @@
 let dataTableInfo = '';
 let dataTableService = '';
+let custNmInfo = '';
+let serviceNmInfo = '';
 
 const getCookie = (name) => {
     const value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');

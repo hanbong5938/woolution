@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-group">
                             <label><spring:message code="price"/></label>
-                            <input name="sales_price" type="tel" class="form-control">
+                            <input name="sales_price" class="form-control">
                         </div>
                         <div class="form-group">
                             <label><spring:message code="time"/></label>
@@ -106,6 +106,63 @@
                     <button class="btn btn-primary mr-1"><spring:message code="reg"/></button>
                     <button class="btn btn-info mr-1"><spring:message code="mod"/></button>
                     <button class="btn btn-danger"><spring:message code="del"/></button>
+                </div>
+            </div>
+        </div>
+        <%--/.modal content--%>
+    </div>
+</div>
+
+<%--modal--%>
+<div class="modal fade align-content-center" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="color-palette-set">
+            <%-- content--%>
+            <div class="modal-content">
+                <%--header--%>
+                <div class="modal-header d-flex bg-gray-dark justify-content-center text-center">
+                    <h3 class="modal-title"><i class="fas fa-edit"></i><spring:message code="detail"/> <spring:message
+                            code="info"/></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+
+                <%--modal body--%>
+                <div class="modal-body justify-content-center">
+                    <table id="serviceNmInfo" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="number"/></th>
+                            <th><spring:message code="kind"/></th>
+                            <th><spring:message code="nm"/></th>
+                            <th><spring:message code="desc"/></th>
+                            <th><spring:message code="price"/></th>
+                            <th><spring:message code="tet"/></th>
+                            <th><spring:message code="createAT"/></th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <table id="custNmInfo" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="number"/></th>
+                            <th><spring:message code="nm"/></th>
+                            <th><spring:message code="species"/></th>
+                            <th><spring:message code="PhoneNo"/></th>
+                            <th><spring:message code="address"/></th>
+                            <th><spring:message code="sex"/></th>
+                            <th><spring:message code="birthDay"/></th>
+                            <th><spring:message code="parentNm"/></th>
+                            <th><spring:message code="memo"/></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <%--/.modal-body--%>
+
+                <%--footer--%>
+                <div class="modal-footer flex-center">
                 </div>
             </div>
         </div>

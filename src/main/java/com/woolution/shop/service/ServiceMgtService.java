@@ -18,4 +18,6 @@ public interface ServiceMgtService {
     List<ServiceMgtCategoryModel> infoCategory();
 
     int infoCategoryAdd(ServiceMgtCategoryModel serviceMgtCategoryModel);
+
+    List<ServiceMgtModel> infoOne(int id);
 }

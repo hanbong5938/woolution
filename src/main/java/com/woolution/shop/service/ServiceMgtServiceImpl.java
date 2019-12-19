@@ -48,5 +48,10 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
         return serviceMgtMapper.infoCategoryAdd(serviceMgtCategoryModel);
     }
 
+    @Override
+    public List<ServiceMgtModel> infoOne(int id) {
+        return serviceMgtMapper.infoOne(id);
+    }
+
 
 }

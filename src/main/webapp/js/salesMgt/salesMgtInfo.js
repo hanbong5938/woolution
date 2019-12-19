@@ -155,7 +155,6 @@ $(".modal-footer > .btn-primary").click(
             sales_time: $("input[name=sales_time]").val(),
         };
 
-        console.log(salesContent)
         //등록
         dataTableService.salesTableRegister(salesContent);
 
@@ -196,16 +195,90 @@ $(".modal-footer > .btn-danger").click(
     }
 );
 
+//초기설정위해성
+serviceNmInfo = $("#serviceNmInfo").DataTable({
+    searching: false,
+    paging: false,
+    info: false
+});
+
+
 //서비스 아이디 모달 조회
 $('#dataTableInfo tbody').on('dblclick', '.serviceNm', function () {
-    const _this = $(this).closest(`tr`)
-    const sampleData = dataTableInfo.row(_this).data()["service_id"];
-    console.log(sampleData);
+
+    serviceNmInfo.destroy();
+
+    const _this = $(this).closest(`tr`);
+    const _thisData = dataTableInfo.row(_this).data()["service_id"];
+
+    $('#searchModal').modal();
+    $("#custNmInfo").hide();
+    $("#serviceNmInfo").show();
+
+    serviceNmInfo = $("#serviceNmInfo").DataTable({
+        ajax: {
+            type: "GET",
+            url: "/service-mgt/infoOne/" + _thisData,
+            dataType: "JSON",
+            dataSrc: "",
+            destroy: true,
+        },
+        columns: [
+            {data: "id"},
+            {data: "service_category_name"},
+            {data: "service_nm"},
+            {data: "service_desc"},
+            {data: "service_price", searchable: false},
+            {data: "service_tet", searchable: false},
+            {data: "service_createAT", searchable: false},
+        ],
+        searching: false,
+        paging: false,
+        info: false
+    })
+});
+
+//초기설정위해성
+custNmInfo = $("#custNmInfo").DataTable({
+    searching: false,
+    paging: false,
+    info: false
 });
 
 //고객 아이디 모달 조회
 $('#dataTableInfo tbody').on('dblclick', '.custNm', function () {
-    const _this = $(this).closest(`tr`)
-    const sampleData = dataTableInfo.row(_this).data()["cust_id"];
-    console.log(sampleData);
+
+    custNmInfo.destroy();
+
+    const _this = $(this).closest(`tr`);
+    const _thisData = dataTableInfo.row(_this).data()["cust_id"];
+
+    $('#searchModal').modal();
+    $("#serviceNmInfo").hide();
+    $("#custNmInfo").show();
+
+    custNmInfo = $("#custNmInfo").DataTable({
+        ajax: {
+            type: "GET",
+            url: "/cust-mgt/infoOne/" + _thisData,
+            dataType: "JSON",
+            dataSrc: "",
+            destroy: true,
+        },
+        columns: [
+            {data: "id", searchable: false},
+            {data: "cust_nm"},
+            {data: "puppy_species_nm", searchable: false},
+            {data: "cust_no"},
+            {data: "cust_address", searchable: false},
+            {data: "cust_sex", searchable: false},
+            {data: "cust_birthDay", searchable: false},
+            {data: "cust_parent_nm"},
+            {data: "cust_comment", searchable: false}
+        ],
+        searching: false,
+        paging: false,
+        info: false
+    })
+
 });

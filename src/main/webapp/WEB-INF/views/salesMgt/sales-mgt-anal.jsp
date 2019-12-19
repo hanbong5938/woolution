@@ -30,7 +30,7 @@
             <!-- DONUT CHART -->
             <div class="card card-danger">
                 <div class="card-header">
-                    <h3 class="card-title">방문 나이</h3>
+                    <h3 class="card-title"><spring:message code="visit"/> <spring:message code="anal"/></h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i

@@ -22,6 +22,7 @@ public class CustMgtController {
         this.custMgtService = custMgtService;
     }
 
+    //info
     @PostMapping(value = "/infoInsert", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> infoInsert(@RequestBody CustMgtModel custMgtModel) {
         int count = custMgtService.infoInsert(custMgtModel);
@@ -56,4 +57,27 @@ public class CustMgtController {
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @GetMapping(value = "/infoOne/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CustMgtModel>> infoOne(@PathVariable int id) {
+        return new ResponseEntity<>(custMgtService.infoOne(id), HttpStatus.OK);
+    }
+    //end info
+
+    //anal
+    @GetMapping(value = "/anal-visit-month", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<PuppySpeciesModel>> analVisitMonth() {
+        return new ResponseEntity<>(custMgtService.analVisitMonth(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-visit", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<PuppySpeciesModel>> analVisit() {
+        return new ResponseEntity<>(custMgtService.analVisit(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-visitCnt", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<PuppySpeciesModel>> analVisitCnt() {
+        return new ResponseEntity<>(custMgtService.analVisitCnt(), HttpStatus.OK);
+    }
+
+    //end anal
 }

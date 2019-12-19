@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface CustMgtMapper {
 
+    //info
     int infoInsert(CustMgtModel custMgtModel);
 
     List<CustMgtModel> infoList();
@@ -19,4 +20,16 @@ public interface CustMgtMapper {
     List<PuppySpeciesModel> infoSpecies();
 
     int infoSpeciesAdd(PuppySpeciesModel puppySpeciesModel);
+
+    List<CustMgtModel> infoOne(int id);
+    //end info
+
+    //anal
+    List<PuppySpeciesModel> analVisitMonth();
+
+    List<PuppySpeciesModel> analVisit();
+
+    List<PuppySpeciesModel> analVisitCnt();
+
+    //end anal
 }

@@ -1,5 +1,6 @@
 package com.woolution.shop.controller;
 
+import com.woolution.shop.model.CustMgtModel;
 import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 import com.woolution.shop.service.ServiceMgtService;
@@ -56,5 +57,9 @@ public class ServiceMgtController {
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @GetMapping(value = "/infoOne/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> infoOne(@PathVariable int id) {
+        return new ResponseEntity<>(serviceMgtService.infoOne(id), HttpStatus.OK);
+    }
 
 }

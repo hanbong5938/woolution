@@ -18,6 +18,8 @@ public class CustMgtServiceImpl implements CustMgtService {
         this.custMgtMapper = custMgtMapper;
     }
 
+    //info
+
     @Override
     public int infoInsert(CustMgtModel custMgtModel) {
         return custMgtMapper.infoInsert(custMgtModel);
@@ -48,5 +50,30 @@ public class CustMgtServiceImpl implements CustMgtService {
         return custMgtMapper.infoSpeciesAdd(puppySpeciesModel);
     }
 
+    @Override
+    public List<CustMgtModel> infoOne(int id) {
+        return custMgtMapper.infoOne(id);
+    }
+
+    //end info
+
+    //anal
+
+    @Override
+    public List<PuppySpeciesModel> analVisitMonth() {
+        return custMgtMapper.analVisitMonth();
+    }
+
+    @Override
+    public List<PuppySpeciesModel> analVisit() {
+        return custMgtMapper.analVisit();
+    }
+
+    @Override
+    public List<PuppySpeciesModel> analVisitCnt() {
+        return custMgtMapper.analVisitCnt();
+    }
+
+    //end anal
 
 }

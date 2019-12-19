@@ -19,4 +19,7 @@ public class CustMgtModel {
     private String cust_parent_nm;
     private int puppy_species_id;
     private String puppy_species_nm;
+
+    private int cnt;
+    private int visitCnt;
 }
