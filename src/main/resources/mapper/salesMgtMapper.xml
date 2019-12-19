@@ -45,11 +45,13 @@
     <select id="infoServiceList" resultType="hashmap">
         select id, service_nm
         from service
+        where service_state = 1
     </select>
 
     <select id="infoCustList" resultType="hashmap">
         select id, cust_nm
         from cust
+        where cust_state = 1
     </select>
 
 </mapper>
