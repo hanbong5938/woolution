@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
-public class SalesModel {
+public class SalesMgtModel {
     private int id;
     private int sales_price;
     private Timestamp sales_createAT;
@@ -17,4 +17,6 @@ public class SalesModel {
     private int cust_id;
     private String service_nm;
     private String cust_nm;
+    private int monthSales;
+    private int result;
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ServiceMgtService {
 
+    //info
     int infoInsert(ServiceMgtModel serviceMgtModel);
 
     List<ServiceMgtModel> infoList();
@@ -20,4 +21,17 @@ public interface ServiceMgtService {
     int infoCategoryAdd(ServiceMgtCategoryModel serviceMgtCategoryModel);
 
     List<ServiceMgtModel> infoOne(int id);
+
+    //end info
+
+    //anal
+
+    List<ServiceMgtModel> analServiceMonth();
+
+    List<ServiceMgtModel> analService();
+
+    List<ServiceMgtModel> analServiceCnt();
+
+    //end anal
+
 }

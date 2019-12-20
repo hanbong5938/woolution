@@ -56,7 +56,7 @@
         values (#{puppy_species_nm})
     </insert>
 
-    <select id="infoSpecies" resultType="hashmap">
+    <select id="infoSpecies" resultType="com.woolution.shop.model.PuppySpeciesModel">
         select id, puppy_species_nm
         from puppy_species
     </select>
@@ -83,7 +83,7 @@
     <!--end info-->
 
     <!--anal-->
-    <select id="analVisitMonth" resultType="hashmap">
+    <select id="analVisitMonth" resultType="com.woolution.shop.model.CustMgtModel">
         select count(case when cust_state = 1 then 1 end) as cnt
         from cust
         WHERE cust_createAT >= date_add(now(), interval -2 year)
@@ -96,10 +96,11 @@
              puppy_species
         where cust_state = 1
           and puppy_species_id = puppy_species.id
+          and cust_createAT >= date_add(now(), interval -1 year)
         group by puppy_species_id
     </select>
 
-    <select id="analVisitCnt" resultType="hashmap">
+    <select id="analVisitCnt" resultType="com.woolution.shop.model.CustMgtModel">
         select cust.cust_nm,
                (count(cust_id) * 100 / (select count(sales.id) from sales where sales_state = 1)) as cnt,
                count(cust_id)                                                                     as visitCnt
@@ -108,6 +109,7 @@
         where cust.id = cust_id
           and cust_state = 1
           and sales_state = 1
+          and cust_createAT >= date_add(now(), interval -1 year)
         group by cust_id;
     </select>
     <!--end anal-->

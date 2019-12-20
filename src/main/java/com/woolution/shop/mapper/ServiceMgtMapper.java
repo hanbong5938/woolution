@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ServiceMgtMapper {
 
+    //info
     int infoInsert(ServiceMgtModel serviceMgtModel);
 
     List<ServiceMgtModel> infoList();
@@ -20,5 +21,15 @@ public interface ServiceMgtMapper {
     int infoCategoryAdd(ServiceMgtCategoryModel serviceMgtCategoryModel);
 
     List<ServiceMgtModel> infoOne(int id);
+//end info
 
+    //anal
+
+    List<ServiceMgtModel> analServiceMonth();
+
+    List<ServiceMgtModel> analService();
+
+    List<ServiceMgtModel> analServiceCnt();
+
+    //end anal
 }

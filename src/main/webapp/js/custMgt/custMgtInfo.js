@@ -133,12 +133,30 @@ dataTableInfo = $("#dataTableInfo").DataTable({
         {data: "cust_nm"},
         {data: "puppy_species_nm", searchable: false},
         {data: "cust_no"},
-        {data: "cust_address", searchable: false},
+        {
+            data: "cust_address", searchable: false, render: function (data) {
+
+                //길이제한..
+                if (data.length > 6) {
+                    return data.substr(0, 6) + "...";
+                }
+                return data;
+            }
+        },
         {data: "cust_sex", searchable: false},
         {data: "cust_birthDay", searchable: false},
         {data: "cust_createAT", searchable: false},
         {data: "cust_parent_nm"},
-        {data: "cust_comment", searchable: false},
+        {
+            data: "cust_comment", searchable: false, render: function (data) {
+
+                //길이제한..
+                if (data.length > 6) {
+                    return data.substr(0, 6) + "...";
+                }
+                return data;
+            }
+        },
         {
             "data": null,
             "className": "center",

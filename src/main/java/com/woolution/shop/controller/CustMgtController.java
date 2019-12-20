@@ -65,7 +65,7 @@ public class CustMgtController {
 
     //anal
     @GetMapping(value = "/anal-visit-month", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<PuppySpeciesModel>> analVisitMonth() {
+    public ResponseEntity<List<CustMgtModel>> analVisitMonth() {
         return new ResponseEntity<>(custMgtService.analVisitMonth(), HttpStatus.OK);
     }
 
@@ -75,7 +75,7 @@ public class CustMgtController {
     }
 
     @GetMapping(value = "/anal-visitCnt", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<PuppySpeciesModel>> analVisitCnt() {
+    public ResponseEntity<List<CustMgtModel>> analVisitCnt() {
         return new ResponseEntity<>(custMgtService.analVisitCnt(), HttpStatus.OK);
     }
 

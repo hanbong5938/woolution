@@ -60,7 +60,7 @@ public class CustMgtServiceImpl implements CustMgtService {
     //anal
 
     @Override
-    public List<PuppySpeciesModel> analVisitMonth() {
+    public List<CustMgtModel> analVisitMonth() {
         return custMgtMapper.analVisitMonth();
     }
 
@@ -70,7 +70,7 @@ public class CustMgtServiceImpl implements CustMgtService {
     }
 
     @Override
-    public List<PuppySpeciesModel> analVisitCnt() {
+    public List<CustMgtModel> analVisitCnt() {
         return custMgtMapper.analVisitCnt();
     }
 

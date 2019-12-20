@@ -18,6 +18,7 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
         this.serviceMgtMapper = serviceMgtMapper;
     }
 
+    //info
     @Override
     public int infoInsert(ServiceMgtModel serviceMgtModel) {
         return serviceMgtMapper.infoInsert(serviceMgtModel);
@@ -52,6 +53,23 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
     public List<ServiceMgtModel> infoOne(int id) {
         return serviceMgtMapper.infoOne(id);
     }
+    //end info
 
+    //anal
+    @Override
+    public List<ServiceMgtModel> analServiceMonth() {
+        return serviceMgtMapper.analServiceMonth();
+    }
+
+    @Override
+    public List<ServiceMgtModel> analService() {
+        return serviceMgtMapper.analService();
+    }
+
+    @Override
+    public List<ServiceMgtModel> analServiceCnt() {
+        return serviceMgtMapper.analServiceCnt();
+    }
+    //end anal
 
 }

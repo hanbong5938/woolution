@@ -26,11 +26,11 @@ public interface CustMgtService {
     //end info
 
     //anal
-    List<PuppySpeciesModel> analVisitMonth();
+    List<CustMgtModel> analVisitMonth();
 
     List<PuppySpeciesModel> analVisit();
 
-    List<PuppySpeciesModel> analVisitCnt();
+    List<CustMgtModel> analVisitCnt();
     //end anal
 }
 

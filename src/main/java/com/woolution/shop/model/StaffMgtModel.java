@@ -6,7 +6,7 @@ import java.security.Timestamp;
 
 
 @Data
-public class staffMgtModel {
+public class StaffMgtModel {
 
   private int id;
   private String staff_nm;

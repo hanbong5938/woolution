@@ -1,6 +1,7 @@
 package com.woolution.shop.controller;
 
 import com.woolution.shop.model.CustMgtModel;
+import com.woolution.shop.model.PuppySpeciesModel;
 import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 import com.woolution.shop.service.ServiceMgtService;
@@ -23,6 +24,7 @@ public class ServiceMgtController {
         this.serviceMgtService = serviceMgtService;
     }
 
+    //info
     @PostMapping(value = "/infoInsert", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> infoInsert(@RequestBody ServiceMgtModel serviceMgtModel) {
         int count = serviceMgtService.infoInsert(serviceMgtModel);
@@ -61,5 +63,24 @@ public class ServiceMgtController {
     public ResponseEntity<List<ServiceMgtModel>> infoOne(@PathVariable int id) {
         return new ResponseEntity<>(serviceMgtService.infoOne(id), HttpStatus.OK);
     }
+    //end info
+
+    //anal
+    @GetMapping(value = "/anal-service-month", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> analServiceMonth() {
+        return new ResponseEntity<>(serviceMgtService.analServiceMonth(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-service", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> analService() {
+        return new ResponseEntity<>(serviceMgtService.analService(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-serviceCnt", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> analServiceCnt() {
+        return new ResponseEntity<>(serviceMgtService.analServiceCnt(), HttpStatus.OK);
+    }
+
+    //end anal
 
 }

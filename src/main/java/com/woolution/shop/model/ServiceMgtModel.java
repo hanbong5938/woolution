@@ -17,4 +17,5 @@ public class ServiceMgtModel {
 
     private int service_category_id;
     private String service_category_name;
+    private int serviceCnt;
 }

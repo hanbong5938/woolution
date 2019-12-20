@@ -7,4 +7,5 @@ public class ServiceMgtCategoryModel {
     private int id;
     private String service_category_name;
     private String service_category_createAT;
+    private int serviceCategoryCtn;
 }

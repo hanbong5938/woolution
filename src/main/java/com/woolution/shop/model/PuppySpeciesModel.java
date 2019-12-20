@@ -6,4 +6,5 @@ import lombok.Data;
 public class PuppySpeciesModel {
     private int id;
     private String puppy_species_nm;
+
 }
