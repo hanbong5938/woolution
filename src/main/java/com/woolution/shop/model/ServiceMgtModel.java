@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 public class ServiceMgtModel {
     private int id;
     private String service_desc;
+    private String service_nm;
     private int service_price;
     private int service_tet;
     private boolean service_state;
@@ -16,4 +17,5 @@ public class ServiceMgtModel {
 
     private int service_category_id;
     private String service_category_name;
+    private int serviceCnt;
 }

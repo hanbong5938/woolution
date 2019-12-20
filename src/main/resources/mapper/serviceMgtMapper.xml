@@ -3,23 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.woolution.shop.mapper.ServiceMgtMapper">
-
+    <!--info-->
     <!--임시로 admin_id 1로 고정-->
     <insert id="infoInsert">
-        insert into service (service_category_id, service_desc, service_price, service_tet, service_state,
+        insert into service (service_category_id, service_nm, service_desc, service_price, service_tet, service_state,
                              service_createAT,
                              admin_id)
-        VALUES (#{service_category_id}, #{service_desc}, #{service_price}, #{service_tet}, true,
+        VALUES (#{service_category_id}, #{service_nm}, #{service_desc}, #{service_price}, #{service_tet}, true,
                 now(), 1)
     </insert>
 
     <select id="infoList" resultType="hashmap">
         select id,
                service_desc,
+               service_nm,
                service_price,
                service_tet,
                service_state,
-               service_createAT,
+               date_format(service_createAT, '%Y-%m-%d')         as service_createAT,
                admin_id,
                service_category_id,
                (select service_category_name
@@ -32,6 +33,7 @@
     <update id="infoMod">
         update service
         set service_desc        = #{service_desc},
+            service_nm          = #{service_nm},
             service_price       = #{service_price},
             service_tet         = #{service_tet},
             service_category_id = #{service_category_id}
@@ -44,7 +46,6 @@
         where id = #{id}
     </update>
 
-    <!--category createAT는 현재 사용할일 없어서 제거-->
     <select id="infoCategory" resultType="hashmap">
         select id, service_category_name
         from service_category;
@@ -54,4 +55,58 @@
         insert into service_category(service_category_name, service_category_createAT)
         values (#{service_category_name}, now())
     </insert>
+
+    <select id="infoOne" resultType="hashmap">
+        select id,
+               service_desc,
+               service_nm,
+               service_price,
+               service_tet,
+               service_state,
+               date_format(service_createAT, '%Y-%m-%d')         as service_createAT,
+               admin_id,
+               service_category_id,
+               (select service_category_name
+                from service_category
+                where service_category_id = service_category.id) as service_category_name
+        from service
+        where service_state = true
+          and id = #{id}
+    </select>
+    <!--end info-->
+
+    <!--anal-->
+    <select id="analServiceMonth" resultType="com.woolution.shop.model.ServiceMgtModel">
+        select count(case when service_state = 1 then 1 end) as serviceCnt
+        from service
+        where service_createAT >= date_add(now(), interval - 2 year)
+        group by extract(year_month from service_createAT)
+    </select>
+
+    <select id="analService" resultType="com.woolution.shop.model.ServiceMgtCategoryModel">
+        select service_category_name, count(DISTINCT service.id) as serviceCategoryCtn
+        from service_category,
+             service
+        where service_state = 1
+          and service_category_id = service_category.id
+          and service_createAT >= date_add(now(), interval -1 year)
+        group by service_category_id
+    </select>
+
+    <select id="analServiceCnt" resultType="hashmap">
+        select service_category_name,
+               service_nm,
+               (count(service_id) * 100 / (select count(sales.id) from sales where sales_state = 1)) as per,
+               count(service_id)                                                                     as visitCnt
+        from service,
+             sales,
+             service_category
+        where service.id = service_id
+          and service_category_id = service_category.id
+          and sales_state = 1
+          and service_state = 1
+          and sales_createAT >= date_add(now(), interval -1 year)
+        group by service_id
+    </select>
+    <!--end anal-->
 </mapper>

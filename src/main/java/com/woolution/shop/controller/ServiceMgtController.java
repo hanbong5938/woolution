@@ -1,5 +1,7 @@
 package com.woolution.shop.controller;
 
+import com.woolution.shop.model.CustMgtModel;
+import com.woolution.shop.model.PuppySpeciesModel;
 import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 import com.woolution.shop.service.ServiceMgtService;
@@ -22,28 +24,26 @@ public class ServiceMgtController {
         this.serviceMgtService = serviceMgtService;
     }
 
+    //info
     @PostMapping(value = "/infoInsert", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> infoInsert(@RequestBody ServiceMgtModel serviceMgtModel) {
         int count = serviceMgtService.infoInsert(serviceMgtModel);
-
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping(value = "/infoList", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<ServiceMgtModel>> sampleList() {
+    public ResponseEntity<List<ServiceMgtModel>> infoList() {
         return new ResponseEntity<>(serviceMgtService.infoList(), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/infoMod", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> infoMod(@RequestBody ServiceMgtModel serviceMgtModel) {
-        System.out.println(serviceMgtModel);
         int count = serviceMgtService.infoMod(serviceMgtModel);
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PatchMapping(value = "/infoDel", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> infoDel(@RequestBody int id) {
-        System.out.println(id);
         int count = serviceMgtService.infoDel(id);
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -59,5 +59,28 @@ public class ServiceMgtController {
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @GetMapping(value = "/infoOne/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> infoOne(@PathVariable int id) {
+        return new ResponseEntity<>(serviceMgtService.infoOne(id), HttpStatus.OK);
+    }
+    //end info
+
+    //anal
+    @GetMapping(value = "/anal-service-month", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> analServiceMonth() {
+        return new ResponseEntity<>(serviceMgtService.analServiceMonth(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-service", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> analService() {
+        return new ResponseEntity<>(serviceMgtService.analService(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-serviceCnt", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> analServiceCnt() {
+        return new ResponseEntity<>(serviceMgtService.analServiceCnt(), HttpStatus.OK);
+    }
+
+    //end anal
 
 }

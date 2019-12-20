@@ -27,19 +27,37 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
+
+                <%--cust-mgt--%>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
+                        <i class="fas fa-user-edit nav-icon"></i>
                         <p>
-                            <spring:message code="sample"/>
+                            <spring:message code="cust"/> <spring:message code="mgt"/>
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a id="sampleTable" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p><spring:message code="sampleTable"/></p>
+                            <a id="custMgtInfo" class="nav-link">
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p><spring:message code="cust"/> <spring:message code="info"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="custMgtBook" class="nav-link">
+                                <i class="far fa-calendar nav-icon"></i>
+                                <p><spring:message code="cust"/> <spring:message code="book"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="custMgtAnal" class="nav-link">
+                                <i class="fas fa-chart-area nav-icon"></i>
+                                <p><spring:message code="cust"/> <spring:message code="anal"/></p>
                             </a>
                         </li>
                     </ul>
@@ -48,7 +66,7 @@
                 <%--service-mgt--%>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
+                        <i class="fas fa-dog nav-icon"></i>
                         <p>
                             <spring:message code="service"/> <spring:message code="mgt"/>
                             <i class="right fas fa-angle-left"></i>
@@ -57,7 +75,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a id="serviceMgtInfo" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-list-alt nav-icon"></i>
                                 <p><spring:message code="service"/> <spring:message code="info"/></p>
                             </a>
                         </li>
@@ -65,7 +83,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a id="serviceMgtMessage" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-comment nav-icon"></i>
                                 <p><spring:message code="service"/> <spring:message code="message"/></p>
                             </a>
                         </li>
@@ -73,7 +91,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a id="serviceMgtCoupon" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-copyright nav-icon"></i>
                                 <p><spring:message code="service"/> <spring:message code="coupon"/></p>
                             </a>
                         </li>
@@ -81,7 +99,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a id="serviceMgtBook" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-calendar nav-icon"></i>
                                 <p><spring:message code="service"/> <spring:message code="book"/></p>
                             </a>
                         </li>
@@ -89,38 +107,44 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a id="serviceMgtAnal" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-chart-line nav-icon"></i>
                                 <p><spring:message code="service"/> <spring:message code="anal"/></p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <%--언어--%>
-                <li class="nav-header"><spring:message code="lang"/></li>
-                <li class="nav-item" id="ko">
-                    <a href="#" class="nav-link set-language">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p><spring:message code="ko"/></p>
+                <%--sales-mgt--%>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-calculator nav-icon"></i>
+                        <p>
+                            <spring:message code="sales"/> <spring:message code="mgt"/>
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="salesMgtInfo" class="nav-link">
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p><spring:message code="sales"/> <spring:message code="info"/></p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a id="salesMgtAnal" class="nav-link">
+                                <i class="fas fa-chart-pie nav-icon"></i>
+                                <p><spring:message code="sales"/> <spring:message code="anal"/></p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item" id="en">
-                    <a href="#" class="nav-link set-language">
-                        <div style="display: inline-block">
-                            <img src="${contextPath}/img/flag/usa.png" width="10" height="10" alt="영어"/>
-                        </div>
-                        <p><spring:message code="en"/></p>
-                    </a>
-                </li>
-                <li class="nav-item" id="ja">
-                    <a href="#" class="nav-link set-language">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p><spring:message code="ja"/></p>
-                    </a>
-                </li>
+
+
+                <!-- /.sidebar-menu -->
             </ul>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>

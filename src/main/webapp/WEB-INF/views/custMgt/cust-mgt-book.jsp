@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/index">Home</a></li>
-                    <li class="breadcrumb-item active"><spring:message code="service"/> <spring:message code="mgt"/></li>
+                    <li class="breadcrumb-item active">DataTables</li>
                 </ol>
             </div>
         </div>
@@ -44,7 +44,6 @@
                         <tr>
                             <th><spring:message code="number"/></th>
                             <th><spring:message code="kind"/></th>
-                            <th><spring:message code="nm"/></th>
                             <th><spring:message code="desc"/></th>
                             <th><spring:message code="price"/></th>
                             <th><spring:message code="tet"/></th>
@@ -53,6 +52,18 @@
                             <th><spring:message code="mod"/></th>
                         </tr>
                         </thead>
+                        <tfoot>
+                        <tr>
+                            <th><spring:message code="number"/></th>
+                            <th><spring:message code="kind"/></th>
+                            <th><spring:message code="desc"/></th>
+                            <th><spring:message code="price"/></th>
+                            <th><spring:message code="tet"/></th>
+                            <th><spring:message code="state"/></th>
+                            <th><spring:message code="createAT"/></th>
+                            <th><spring:message code="mod"/></th>
+                        </tr>
+                        </tfoot>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -87,20 +98,16 @@
                             <input name="service_state" type="hidden" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="kind"/></label>
+                            <label><spring:message code="cust"/> <spring:message code="kind"/></label>
                             <select name="service_category_id" class="form-control">
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="nm"/></label>
-                            <input name="service_nm" type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="desc"/></label>
+                            <label><spring:message code="cust"/> <spring:message code="desc"/></label>
                             <textarea name="service_desc" class="form-control" rows="3"></textarea>
                         </div>
                         <div class="form-group">
-                            <label><spring:message code="service"/> <spring:message code="price"/></label>
+                            <label><spring:message code="cust"/> <spring:message code="price"/></label>
                             <div class="input-group-prepend">
                                 <input name="service_price" type="number" class="form-control">
                                 <span class="input-group-text">￦</span>
@@ -132,6 +139,7 @@
 
 <div class="modal fade" id="categoryAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
+    <!--Modal: Login with Avatar Form-->
     <div class="modal-dialog modal-sm" role="document">
         <!--Content-->
         <div class="modal-content">
@@ -148,8 +156,7 @@
                     <input type="text" name="service_category_name" class="form-control form-control-sm validate ml-0">
                 </div>
                 <div class="text-center mt-4">
-                    <button class="btn btn-flat btn-secondary mt-1" id="categoryAddBtn"><spring:message
-                            code="reg"/></button>
+                    <button class="btn btn-flat btn-secondary mt-1" id="categoryAddBtn"><spring:message code="reg"/></button>
                 </div>
             </div>
 
@@ -157,6 +164,7 @@
         <!--/.Content-->
     </div>
 </div>
+<!--Modal: Login with Avatar Form-->
 
 
-<script src="${contextPath}/js/serviceMgt/serviceMgtInfo.js"></script>
+<script src="${contextPath}/js/custMgt/custMgtBook.js"></script>

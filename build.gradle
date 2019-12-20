@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'com.woolution'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.springframework.security:spring-security-test'
+    //기본적으로 springboot에서 제공하는 톰캣은 jsp를 실행할 수 없어서 추
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+    //jstl 사용을 위한 라이브러리 추
+    compile('javax.servlet:jstl')
+    //JSON으로 포맷 시켜서 전송
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
+    // JOSN/XMl
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml'
+    // https://mvnrepository.com/artifact/org.json/json
+    compile group: 'org.json', name: 'json', version: '20190722'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -9,7 +9,8 @@
             <!-- AREA CHART -->
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title"><spring:message code="monthly"/> <spring:message code="service"/> <spring:message code="use"/> <spring:message code="anal"/></h3>
+                    <h3 class="card-title"><spring:message code="monthly"/> <spring:message code="revenue"/>
+                        <spring:message code="anal"/></h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -30,7 +31,8 @@
             <!-- DONUT CHART -->
             <div class="card card-danger">
                 <div class="card-header">
-                    <h3 class="card-title"><spring:message code="service"/> <spring:message code="category"/> <spring:message code="anal"/></h3>
+                    <h3 class="card-title"><spring:message code="sales"/> <spring:message code="revenue"/>
+                        <spring:message code="percent"/> <spring:message code="anal"/></h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -49,7 +51,8 @@
 
             <div class="card card-success">
                 <div class="card-header">
-                    <h3 class="card-title"><spring:message code="use"/> <spring:message code="service"/> <spring:message code="anal"/></h3>
+                    <h3 class="card-title"><spring:message code="cust"/> <spring:message code="revenue"/>
+                        <spring:message code="rank"/> <spring:message code="anal"/></h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -62,15 +65,13 @@
                     <table id="progressAnal" class="table table-bordered">
                         <thead>
                         <tr>
-                            <th><spring:message code="category"/></th>
                             <th><spring:message code="nm"/></th>
+                            <th><spring:message code="consumption"/></th>
+                            <th style="width: 10px"><spring:message code="count"/></th>
                             <th><spring:message code="graph"/></th>
                             <th style="width: 40px"><spring:message code="percent"/></th>
-                            <th style="width: 10px"><spring:message code="count"/></th>
                         </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -84,5 +85,5 @@
     </div>
 </section>
 
-<script src="${contextPath}/js/serviceMgt/serviceMgtAnal.js"></script>
+<script src="${contextPath}/js/salesMgt/salesMgtAnal.js"></script>
 <script src="${contextPath}/plugins/chart.js/Chart.js"></script>

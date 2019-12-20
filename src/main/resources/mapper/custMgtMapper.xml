@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woolution.shop.mapper.CustMgtMapper">
+    <!--info-->
+    <!--임시로 admin_id 1로 고정-->
+    <insert id="infoInsert">
+        insert into cust (cust_nm, cust_no, cust_address, cust_sex, cust_birthDay, cust_comment, cust_createAT,
+                          cust_state,
+                          cust_parent_nm, puppy_species_id)
+        VALUES (#{cust_nm}, #{cust_no}, #{cust_address}, #{cust_sex}, #{cust_birthDay}, #{cust_comment}, now(), true,
+                #{cust_parent_nm},
+                #{puppy_species_id})
+    </insert>
+
+    <select id="infoList" resultType="hashmap">
+        select id,
+               cust_nm,
+               cust_no,
+               cust_address,
+               cust_sex,
+               cust_birthDay,
+               cust_comment,
+               date_format(cust_createAT, '%Y-%m-%d')      as cust_createAT,
+               cust_parent_nm,
+               puppy_species_id,
+               (select puppy_species_nm
+                from puppy_species
+                where puppy_species_id = puppy_species.id) as puppy_species_nm
+        from cust
+        where cust_state = true;
+    </select>
+
+    <update id="infoMod">
+        update cust
+        set cust_nm          = #{cust_nm},
+            cust_no          = #{cust_no},
+            cust_address     = #{cust_adrress},
+            cust_sex         = #{cust_sex},
+            cust_birthDay    = #{cust_birthDay},
+            cust_comment     = #{cust_commnet},
+            cust_parent_nm   = #{cust_parentNm},
+            puppy_species_id = #{puppy_speciesId}
+        where id = #{id}
+    </update>
+
+    <update id="infoDel">
+        update cust
+        set cust_state = false
+        where id = #{id}
+    </update>
+
+    <insert id="infoSpeciesAdd">
+        insert into puppy_species (puppy_species_nm)
+        values (#{puppy_species_nm})
+    </insert>
+
+    <select id="infoSpecies" resultType="com.woolution.shop.model.PuppySpeciesModel">
+        select id, puppy_species_nm
+        from puppy_species
+    </select>
+
+    <select id="infoOne" resultType="hashmap">
+        select id,
+               cust_nm,
+               cust_no,
+               cust_address,
+               cust_sex,
+               cust_birthDay,
+               cust_comment,
+               date_format(cust_createAT, '%Y-%m-%d')      as cust_createAT,
+               cust_parent_nm,
+               puppy_species_id,
+               (select puppy_species_nm
+                from puppy_species
+                where puppy_species_id = puppy_species.id) as puppy_species_nm
+        from cust
+        where cust_state = true
+          and id = #{id}
+    </select>
+
+    <!--end info-->
+
+    <!--anal-->
+    <select id="analVisitMonth" resultType="com.woolution.shop.model.CustMgtModel">
+        select count(case when cust_state = 1 then 1 end) as cnt
+        from cust
+        WHERE cust_createAT >= date_add(now(), interval -2 year)
+        group by extract(year_month from cust_createAT)
+    </select>
+
+    <select id="analVisit" resultType="hashmap">
+        select puppy_species_nm, count(DISTINCT puppy_species_id) as count
+        from cust,
+             puppy_species
+        where cust_state = 1
+          and puppy_species_id = puppy_species.id
+          and cust_createAT >= date_add(now(), interval -1 year)
+        group by puppy_species_id
+    </select>
+
+    <select id="analVisitCnt" resultType="com.woolution.shop.model.CustMgtModel">
+        select cust.cust_nm,
+               (count(cust_id) * 100 / (select count(sales.id) from sales where sales_state = 1)) as cnt,
+               count(cust_id)                                                                     as visitCnt
+        from cust,
+             sales
+        where cust.id = cust_id
+          and cust_state = 1
+          and sales_state = 1
+          and cust_createAT >= date_add(now(), interval -1 year)
+        group by cust_id;
+    </select>
+    <!--end anal-->
+</mapper>
