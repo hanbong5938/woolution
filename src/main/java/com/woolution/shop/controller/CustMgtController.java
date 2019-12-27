@@ -2,6 +2,7 @@ package com.woolution.shop.controller;
 
 import com.woolution.shop.model.CustMgtModel;
 import com.woolution.shop.model.PuppySpeciesModel;
+import com.woolution.shop.model.SalesMgtModel;
 import com.woolution.shop.service.CustMgtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,13 @@ public class CustMgtController {
     public ResponseEntity<List<CustMgtModel>> infoOne(@PathVariable int id) {
         return new ResponseEntity<>(custMgtService.infoOne(id), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/custHistory/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<SalesMgtModel>> custHistory(@PathVariable int id) {
+        System.out.println(custMgtService.custHistory(id));
+        return new ResponseEntity<>(custMgtService.custHistory(id), HttpStatus.OK);
+    }
+
     //end info
 
     //anal

@@ -166,5 +166,107 @@
     </div>
 </div>
 
+<div class="modal fade" id="custMgtModalReadOnly" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="color-palette-set">
+            <%-- content--%>
+            <div class="modal-content">
+                <%--header--%>
+                <div class="modal-header d-flex bg-gray-dark justify-content-center text-center">
+                    <h3 class="modal-title"><i class="fas fa-edit"></i><spring:message code="cust"/> <spring:message
+                            code="info"/></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+
+                <%--modal body--%>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="hidden" name="id">
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="nm"/></label>
+                            <input name="cust_nmReadOnly" type="text" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="PhoneNo"/></label>
+                            <input name="cust_noReadOnly" type="tel" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="address"/></label>
+                            <input name="cust_addressReadOnly" type="text" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="parentNm"/></label>
+                            <input name="cust_parent_nmReadOnly" type="text" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="col-12 row">
+                            <div class="form-group col-9">
+                                <label><spring:message code="birthDay"/></label>
+                                <input name="cust_birthDayReadOnly" type="date" class="form-control"
+                                       readonly="readonly">
+                            </div>
+                            <div class="form-group col-3">
+                                <label><spring:message code="sex"/></label>
+                                <input name="cust_sexReadOnly" class="form-control" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><spring:message code="cust"/> <spring:message code="memo"/></label>
+                            <textarea name="cust_commentReadOnly" class="form-control" rows="3"
+                                      readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <%--/.modal-body--%>
+
+            </div>
+        </div>
+        <%--/.modal content--%>
+    </div>
+</div>
+
+<%--modal--%>
+<div class="modal fade align-content-center" id="custHistoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="color-palette-set">
+            <%-- content--%>
+            <div class="modal-content">
+                <%--header--%>
+                <div class="modal-header d-flex bg-gray-dark justify-content-center text-center">
+                    <h3 class="modal-title"><i class="fas fa-edit"></i><spring:message code="cust"/> <spring:message
+                            code="use"/> <spring:message
+                            code="specification"/></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+
+                <%--modal body--%>
+                <div class="modal-body justify-content-center">
+                    <table id="custHistory" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="service"/> <spring:message code="nm"/></th>
+                            <th><spring:message code="time"/></th>
+                            <th><spring:message code="price"/></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <%--/.modal-body--%>
+
+                <%--footer--%>
+                <div class="modal-footer flex-center">
+                    <label for="totalPrice"><spring:message code="use"/> <spring:message code="price"/></label>
+                    <div class="input-group-sm">
+                        <input id="totalPrice" class="form-control text-right" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%--/.modal content--%>
+    </div>
+</div>
 
 <script src="${contextPath}/js/custMgt/custMgtInfo.js"></script>

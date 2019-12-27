@@ -93,6 +93,7 @@ $(function () {
             for (let i = 0; i < data.length; i++) {
                 datasetsData[i] = data[i].serviceCategoryCtn;
             }
+
             let randomColor = [];
             for (let i = 0; i < data.length; i++) {
 

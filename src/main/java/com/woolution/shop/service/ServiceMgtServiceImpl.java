@@ -1,6 +1,7 @@
 package com.woolution.shop.service;
 
 import com.woolution.shop.mapper.ServiceMgtMapper;
+import com.woolution.shop.model.BookModel;
 import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,19 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
     public List<ServiceMgtModel> analServiceCnt() {
         return serviceMgtMapper.analServiceCnt();
     }
+
     //end anal
 
+    //book
+    @Override
+    public void bookInsert(List<BookModel> bookModelList) {
+        serviceMgtMapper.bookDel();
+        serviceMgtMapper.bookInsert(bookModelList);
+    }
+
+    @Override
+    public List<BookModel> bookList() {
+        return serviceMgtMapper.bookList();
+    }
+    //end book
 }

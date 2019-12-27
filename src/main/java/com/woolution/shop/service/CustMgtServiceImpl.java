@@ -3,6 +3,7 @@ package com.woolution.shop.service;
 import com.woolution.shop.mapper.CustMgtMapper;
 import com.woolution.shop.model.CustMgtModel;
 import com.woolution.shop.model.PuppySpeciesModel;
+import com.woolution.shop.model.SalesMgtModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,11 @@ public class CustMgtServiceImpl implements CustMgtService {
     @Override
     public List<CustMgtModel> infoOne(int id) {
         return custMgtMapper.infoOne(id);
+    }
+
+    @Override
+    public List<SalesMgtModel> custHistory(int id) {
+        return custMgtMapper.custHistory(id);
     }
 
     //end info

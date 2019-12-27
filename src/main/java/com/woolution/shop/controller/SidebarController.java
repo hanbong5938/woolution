@@ -34,12 +34,6 @@ public class SidebarController {
         return "/serviceMgt/service-mgt-message";
     }
 
-    @GetMapping("/service-mgt/coupon")
-    public String serviceMgtCoupon() {
-        return "/serviceMgt/service-mgt-coupon";
-    }
-
-
     @GetMapping("/service-mgt/book")
     public String serviceMgtBook() {
         return "/serviceMgt/service-mgt-book";

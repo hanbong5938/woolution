@@ -36,12 +36,12 @@
         update cust
         set cust_nm          = #{cust_nm},
             cust_no          = #{cust_no},
-            cust_address     = #{cust_adrress},
+            cust_address     = #{cust_address},
             cust_sex         = #{cust_sex},
             cust_birthDay    = #{cust_birthDay},
-            cust_comment     = #{cust_commnet},
-            cust_parent_nm   = #{cust_parentNm},
-            puppy_species_id = #{puppy_speciesId}
+            cust_comment     = #{cust_comment},
+            cust_parent_nm   = #{cust_parent_nm},
+            puppy_species_id = #{puppy_species_id}
         where id = #{id}
     </update>
 
@@ -79,6 +79,21 @@
         where cust_state = true
           and id = #{id}
     </select>
+
+
+    <select id="custHistory" resultType="hashmap">
+        select sales_price,
+               date_format(sales_time, '%Y-%m-%d %h:%i') as sales_time,
+               service_nm
+        from sales,
+             cust,
+             service
+        where cust.id = #{id}
+          and service_id = service.id
+          and cust_id = cust.id
+          and sales_state = 1
+    </select>
+
 
     <!--end info-->
 

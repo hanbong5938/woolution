@@ -109,4 +109,23 @@
         group by service_id
     </select>
     <!--end anal-->
+
+    <!--book-->
+    <insert id="bookInsert">
+        insert into book (book_title, book_state, book_start, book_end, book_createAT, sales_id)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.book_title}, true, #{item.book_start}, #{item.book_end}, now(), 14)
+        </foreach>
+    </insert>
+
+    <delete id="bookDel">
+        truncate book
+    </delete>
+
+    <select id="bookList" resultType="hashmap">
+        select id, book_title, book_state, book_start, book_end, book_createAT, sales_id
+        from book
+    </select>
+    <!--end book-->
 </mapper>

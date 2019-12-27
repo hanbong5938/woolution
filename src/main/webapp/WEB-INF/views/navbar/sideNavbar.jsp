@@ -47,14 +47,6 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a id="custMgtBook" class="nav-link">
-                                <i class="far fa-calendar nav-icon"></i>
-                                <p><spring:message code="cust"/> <spring:message code="book"/></p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
                             <a id="custMgtAnal" class="nav-link">
                                 <i class="fas fa-chart-area nav-icon"></i>
                                 <p><spring:message code="cust"/> <spring:message code="anal"/></p>
@@ -85,14 +77,6 @@
                             <a id="serviceMgtMessage" class="nav-link">
                                 <i class="far fa-comment nav-icon"></i>
                                 <p><spring:message code="service"/> <spring:message code="message"/></p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a id="serviceMgtCoupon" class="nav-link">
-                                <i class="far fa-copyright nav-icon"></i>
-                                <p><spring:message code="service"/> <spring:message code="coupon"/></p>
                             </a>
                         </li>
                     </ul>

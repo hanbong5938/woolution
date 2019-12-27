@@ -14,7 +14,7 @@
                sales_price,
                date_format(sales_createAT, '%Y-%m-%d')   as sales_createAT,
                sales_state,
-               date_format(sales_time, '%Y-%m-%dT%h:%i') as sales_time,
+               date_format(sales_time, '%Y-%m-%d %h:%i') as sales_time,
                service.service_nm                        as service_nm,
                cust.cust_nm                              as cust_nm,
                service.id                                as service_id,
@@ -89,7 +89,6 @@
         where cntTable.cust_id = gsTable.cust_id
         group by gsTable.cust_id
     </select>
-
     <!--end anal-->
 
 </mapper>
