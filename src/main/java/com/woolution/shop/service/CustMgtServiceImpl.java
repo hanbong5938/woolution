@@ -80,6 +80,26 @@ public class CustMgtServiceImpl implements CustMgtService {
         return custMgtMapper.analVisitCnt();
     }
 
+    @Override
+    public List<CustMgtModel> analVisitWeek() {
+        return custMgtMapper.analVisitWeek();
+    }
+
+    @Override
+    public List<CustMgtModel> analVisitWeekLast() {
+        return custMgtMapper.analVisitWeekLast();
+    }
+
+    @Override
+    public List<CustMgtModel> analVisitPer() {
+        return custMgtMapper.analVisitPer();
+    }
+
+    @Override
+    public List<CustMgtModel> analVisitWeekCnt() {
+        return custMgtMapper.analVisitWeekCnt();
+    }
+
     //end anal
 
 }

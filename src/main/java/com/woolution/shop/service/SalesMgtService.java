@@ -30,5 +30,9 @@ public interface SalesMgtService {
 
     List<SalesMgtModel> analSalesRank();
 
+    List<SalesMgtModel> analSum();
+
+    List<SalesMgtModel> analSumPer();
+
     //end anal
 }

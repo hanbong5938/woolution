@@ -25,7 +25,6 @@
         where service_id = service.id
           and cust.id = cust_id
           and sales_state = 1
-        ## 판매기록에 삭제된 서비스나 고객 남아야하나?
     </select>
 
     <update id="infoMod">
@@ -60,8 +59,8 @@
     <select id="analSalesMonth" resultType="com.woolution.shop.model.SalesMgtModel">
         select sum(if(sales_state = 1, sales_price, 0)) as monthSales
         from sales
-        where sales_createAT >= date_add(now(), interval - 2 year)
-        group by extract(year_month from sales_createAT)
+        where sales_time >= date_add(now(), interval - 2 year)
+        group by extract(year_month from sales_time)
     </select>
 
     <select id="analSalesPer" resultType="com.woolution.shop.model.SalesMgtModel">
@@ -89,6 +88,24 @@
         where cntTable.cust_id = gsTable.cust_id
         group by gsTable.cust_id
     </select>
+
+    <select id="analSum" resultType="com.woolution.shop.model.SalesMgtModel">
+        select sum(if(sales_state = 1, sales_price, 0)) as monthSales
+        from sales
+        where sales_time >= date_add(now(), interval - 19 month)
+        group by extract(year_month from sales_time)
+    </select>
+
+    <select id="analSumPer" resultType="hashmap">
+        select a.month,
+               concat(round(100 * if(@prev = 0, 0, (a.total_sales - @prev) / @prev), 1)) as growth,
+               @prev := a.total_sales                                                         as total_sales
+        FROM (select extract(year_month from sales_time) as month, sum(sales_price) as total_sales
+              FROM sales
+              where sales_time >= date_add(now(), interval -2 month)
+              group by extract(year_month from sales_time)) a
+    </select>
+
     <!--end anal-->
 
 </mapper>

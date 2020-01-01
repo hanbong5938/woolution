@@ -86,10 +86,11 @@
     <select id="analService" resultType="com.woolution.shop.model.ServiceMgtCategoryModel">
         select service_category_name, count(DISTINCT service.id) as serviceCategoryCtn
         from service_category,
-             service
+             service,
+             sales
         where service_state = 1
           and service_category_id = service_category.id
-          and service_createAT >= date_add(now(), interval -1 year)
+          and sales_time >= date_add(now(), interval -1 year)
         group by service_category_id
     </select>
 
@@ -105,7 +106,7 @@
           and service_category_id = service_category.id
           and sales_state = 1
           and service_state = 1
-          and sales_createAT >= date_add(now(), interval -1 year)
+          and sales_time >= date_add(now(), interval -1 year)
         group by service_id
     </select>
     <!--end anal-->

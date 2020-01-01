@@ -31,6 +31,15 @@ public interface CustMgtService {
     List<PuppySpeciesModel> analVisit();
 
     List<CustMgtModel> analVisitCnt();
+
+    List<CustMgtModel> analVisitWeek();
+
+    List<CustMgtModel> analVisitWeekLast();
+
+    List<CustMgtModel>  analVisitPer();
+
+    List<CustMgtModel> analVisitWeekCnt();
+
     //end anal
 }
 

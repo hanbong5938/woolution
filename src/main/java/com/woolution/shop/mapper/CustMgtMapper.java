@@ -34,5 +34,15 @@ public interface CustMgtMapper {
 
     List<CustMgtModel> analVisitCnt();
 
+    List<CustMgtModel> analVisitWeek();
+
+    List<CustMgtModel> analVisitWeekLast();
+
+    List<CustMgtModel> analSumPer();
+
+    List<CustMgtModel> analVisitPer();
+
+    List<CustMgtModel> analVisitWeekCnt();
+
     //end anal
 }
