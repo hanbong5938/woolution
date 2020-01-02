@@ -39,5 +39,9 @@ public interface ServiceMgtMapper {
     void bookDel();
 
     List<BookModel> bookList();
+
     //end book
+
+    List<ServiceMgtModel> dashboardTable();
+
 }

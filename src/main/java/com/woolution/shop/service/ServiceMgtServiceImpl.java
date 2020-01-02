@@ -85,5 +85,11 @@ public class ServiceMgtServiceImpl implements ServiceMgtService {
     public List<BookModel> bookList() {
         return serviceMgtMapper.bookList();
     }
+
     //end book
+
+    @Override
+    public List<ServiceMgtModel> dashboardTable() {
+        return serviceMgtMapper.dashboardTable();
+    }
 }

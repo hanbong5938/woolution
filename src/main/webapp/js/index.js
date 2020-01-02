@@ -9,10 +9,19 @@ const getCookie = (name) => {
     return value ? value[2] : null;
 };
 
-//dashboard
-// $(document).ready($(".content-wrapper").load("/dashboard?lang=" + getCookie('APPLICATION_LOCALE')));
-// $(".content-wrapper").load("/dashboard?lang=" + getCookie('APPLICATION_LOCALE'));
-//--dashboard
+const cookies = (getCookie("APPLICATION_LOCALE"));
+if (cookies === 'ja') {
+    $('#langIcon').html('<i class="flag-icon flag-icon-jp mr-2"></i>');
+    $('#ja').addClass('active');
+} else if (cookies === 'en') {
+    $('#langIcon').html('<i class="flag-icon flag-icon-us mr-2"></i>');
+    $('#en').addClass('active');
+
+} else {
+    $('#langIcon').html('<i class="flag-icon flag-icon-kr mr-2"></i>');
+    $('#ko').addClass('active');
+
+}
 
 //custMGt
 $('#custMgtInfo').click(function () {

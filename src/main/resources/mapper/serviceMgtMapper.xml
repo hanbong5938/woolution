@@ -77,7 +77,7 @@
 
     <!--anal-->
     <select id="analServiceMonth" resultType="com.woolution.shop.model.ServiceMgtModel">
-        select count(case when service_state = 1 then 1 end) as serviceCnt
+        select count(case when service_state = true then 1 end) as serviceCnt
         from service
         where service_createAT >= date_add(now(), interval - 2 year)
         group by extract(year_month from service_createAT)
@@ -88,7 +88,7 @@
         from service_category,
              service,
              sales
-        where service_state = 1
+        where service_state = true
           and service_category_id = service_category.id
           and sales_time >= date_add(now(), interval -1 year)
         group by service_category_id
@@ -97,15 +97,15 @@
     <select id="analServiceCnt" resultType="hashmap">
         select service_category_name,
                service_nm,
-               (count(service_id) * 100 / (select count(sales.id) from sales where sales_state = 1)) as per,
-               count(service_id)                                                                     as visitCnt
+               (count(service_id) * 100 / (select count(sales.id) from sales where sales_state = true)) as per,
+               count(service_id)                                                                        as visitCnt
         from service,
              sales,
              service_category
         where service.id = service_id
           and service_category_id = service_category.id
-          and sales_state = 1
-          and service_state = 1
+          and sales_state = true
+          and service_state = true
           and sales_time >= date_add(now(), interval -1 year)
         group by service_id
     </select>
@@ -124,9 +124,23 @@
         truncate book
     </delete>
 
-    <select id="bookList" resultType="hashmap">
+    <select id="bookList" resultType="com.woolution.shop.model.BookModel">
         select id, book_title, book_state, book_start, book_end, book_createAT, sales_id
         from book
     </select>
     <!--end book-->
+
+    <select id="dashboardTable" resultType="com.woolution.shop.model.ServiceMgtModel">
+        select service_nm,
+               service_price,
+               (select count(sales.id)
+                from sales
+                where sales_state = true
+                  and service.id = service_id
+                  and sales_time >= date_add(now(), interval -1 year)) as serviceCnt
+        from service
+        where service_state = true
+        order by serviceCnt desc
+        limit 5
+    </select>
 </mapper>

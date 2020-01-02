@@ -4,7 +4,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/index" class="brand-link">
-        <img src="${contextPath}/img/AdminLTELogo.png"
+        <img src="${contextPath}/img/BIG_W_logo.png"
              alt="Woolution Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
@@ -13,16 +13,6 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="${contextPath}/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">CEO.Woo</a>
-            </div>
-        </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -69,14 +59,6 @@
                             <a id="serviceMgtInfo" class="nav-link">
                                 <i class="far fa-list-alt nav-icon"></i>
                                 <p><spring:message code="service"/> <spring:message code="info"/></p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a id="serviceMgtMessage" class="nav-link">
-                                <i class="far fa-comment nav-icon"></i>
-                                <p><spring:message code="service"/> <spring:message code="message"/></p>
                             </a>
                         </li>
                     </ul>

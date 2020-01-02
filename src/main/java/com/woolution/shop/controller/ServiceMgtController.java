@@ -92,4 +92,10 @@ public class ServiceMgtController {
         return new ResponseEntity<>(serviceMgtService.bookList(), HttpStatus.OK);
     }
     //end book
+
+    @GetMapping(value = "/dashboardTable", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> dashboardTable () {
+        return new ResponseEntity<>(serviceMgtService.dashboardTable(), HttpStatus.OK);
+
+    }
 }

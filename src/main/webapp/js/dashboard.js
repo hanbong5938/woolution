@@ -151,13 +151,18 @@ $(function () {
             const result = data[0].growth;
             if (result > 0) {
                 const str = '<i class="fas fa-arrow-up"></i> ' + result + ' %';
-                return $('#analSumPer').addClass('text-success').html(str);
+                $('#analSumPer').addClass('text-success').html(str);
+                $('#salesIcon').html('<i class="ion ion-android-arrow-up text-success"></i> ' + result + ' %')
             } else if (result === '0.0') {
                 const str = '<i class="fas fa-window-minimize"></i> ' + result + ' %';
-                return $('#analSumPer').addClass('text-warning').html(str);
+                $('#analSumPer').addClass('text-warning').html(str);
+                $('#salesIcon').html('<i class="ion ion-android-arrow-up text-warning"></i> ' + result + ' %')
+
             } else {
                 const str = '<i class="fas fa-arrow-down"></i> ' + result + ' %';
-                return $('#analSumPer').addClass('text-danger').html(str);
+                $('#analSumPer').addClass('text-danger').html(str);
+                $('#salesIcon').html('<i class="ion ion-android-arrow-up text-danger"></i> ' + result + ' %')
+
             }
         }
     });
@@ -268,13 +273,17 @@ $(function () {
             const result = data[0].growth;
             if (result > 0) {
                 const str = '<i class="fas fa-arrow-up"></i> ' + result + ' %';
-                return $('#weekVisitPer').addClass('text-success').html(str);
+                $('#weekVisitPer').addClass('text-success').html(str);
+                $('#visitIcon').html('<i class="ion ion-android-arrow-up text-success"></i> ' + result + ' %')
             } else if (result === '0.0') {
                 const str = '<i class="fas fa-window-minimize"></i> ' + result + ' %';
-                return $('#weekVisitPer').addClass('text-warning').html(str);
+                $('#weekVisitPer').addClass('text-warning').html(str);
+                $('#visitIcon').html('<i class="ion ion-android-arrow-up text-warning"></i> ' + result + ' %')
             } else {
                 const str = '<i class="fas fa-arrow-down"></i> ' + result + ' %';
-                return $('#weekVisitPer').addClass('text-danger').html(str);
+                $('#weekVisitPer').addClass('text-danger').html(str);
+                $('#visitIcon').html('<i class="ion ion-android-arrow-down text-danger"></i> ' + result + ' %')
+
             }
         }
     });
@@ -283,7 +292,34 @@ $(function () {
         url: '/cust-mgt/anal-visit-week-cnt',
         type: 'get',
         success: (data) => {
-            const result = $('#weekVisitCnt').html(data[0].count)
+            $('#weekVisitCnt').html(data[0].count + " 회");
         }
+    });
+
+    $("#dashboardTable").DataTable({
+        ajax: {
+            "type": "GET",
+            "url": "/service-mgt/dashboardTable",
+            "dataType": "JSON",
+            dataSrc: "",
+            destroy: true,
+        },
+        columns: [
+            {data: "service_nm"},
+            {
+                data: "service_price", render: function (data) {
+                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+                }
+            },
+            {
+                data: "serviceCnt", render: function (data) {
+                    return data + " 회";
+                }
+            }
+        ],
+        select: false,
+        paging: false,
+        info: false,
+        searching: false
     });
 });

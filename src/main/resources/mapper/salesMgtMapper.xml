@@ -6,7 +6,7 @@
     <!--info-->
     <insert id="infoInsert">
         insert into sales (sales_price, sales_createAT, sales_state, sales_time, service_id, cust_id)
-        values (#{sales_price}, now(), 1, #{sales_time}, #{service_id}, #{cust_id})
+        values (#{sales_price}, now(), true, #{sales_time}, #{service_id}, #{cust_id})
     </insert>
 
     <select id="infoList" resultType="hashmap">
@@ -24,7 +24,7 @@
              service
         where service_id = service.id
           and cust.id = cust_id
-          and sales_state = 1
+          and sales_state = true
     </select>
 
     <update id="infoMod">
@@ -45,19 +45,19 @@
     <select id="infoServiceList" resultType="com.woolution.shop.model.SalesMgtModel">
         select id, service_nm
         from service
-        where service_state = 1
+        where service_state = true
     </select>
 
     <select id="infoCustList" resultType="com.woolution.shop.model.CustMgtModel">
         select id, cust_nm
         from cust
-        where cust_state = 1
+        where cust_state = true
     </select>
     <!--end info-->
 
     <!--anal-->
     <select id="analSalesMonth" resultType="com.woolution.shop.model.SalesMgtModel">
-        select sum(if(sales_state = 1, sales_price, 0)) as monthSales
+        select sum(if(sales_state = true, sales_price, 0)) as monthSales
         from sales
         where sales_time >= date_add(now(), interval - 2 year)
         group by extract(year_month from sales_time)
@@ -65,24 +65,24 @@
 
     <select id="analSalesPer" resultType="com.woolution.shop.model.SalesMgtModel">
         select groupSum / totalSum * 100 as result, service_nm, id
-        from (select service.id as id, service_nm, sum(if(sales_state = 1, sales_price, 0)) as groupSum
+        from (select service.id as id, service_nm, sum(if(sales_state = true, sales_price, 0)) as groupSum
               from sales,
                    service
               where service_id = service.id
               group by service_id) as gsTable,
-             (select sum(if(sales_state = 1, sales_price, 0)) as totalSum from sales) as tsTable
+             (select sum(if(sales_state = true, sales_price, 0)) as totalSum from sales) as tsTable
         group by id
     </select>
 
     <select id="analSalesRank" resultType="hashmap">
         select groupSum / totalSum * 100 as per, cust_nm, groupSum, cnt
-        from (select cust_id, cust_nm, sum(if(sales_state = 1, sales_price, 0)) as groupSum
+        from (select cust_id, cust_nm, sum(if(sales_state = true, sales_price, 0)) as groupSum
               from sales,
                    cust
               where cust_id = cust.id
               group by cust_id) as gsTable,
-             (select sum(if(sales_state = 1, sales_price, 0)) as totalSum from sales) as tsTable,
-             (select count(case when sales_state = 1 then 1 end) as cnt, cust_id
+             (select sum(if(sales_state = true, sales_price, 0)) as totalSum from sales) as tsTable,
+             (select count(case when sales_state = true then 1 end) as cnt, cust_id
               from sales
               group by cust_id) as cntTable
         where cntTable.cust_id = gsTable.cust_id
@@ -90,7 +90,7 @@
     </select>
 
     <select id="analSum" resultType="com.woolution.shop.model.SalesMgtModel">
-        select sum(if(sales_state = 1, sales_price, 0)) as monthSales
+        select sum(if(sales_state = true, sales_price, 0)) as monthSales
         from sales
         where sales_time >= date_add(now(), interval - 19 month)
         group by extract(year_month from sales_time)
@@ -98,7 +98,7 @@
 
     <select id="analSumPer" resultType="hashmap">
         select a.month,
-               concat(round(100 * if(@prev = 0, 0, (a.total_sales - @prev) / @prev), 1)) as growth,
+               concat(round(100 * if(@prev = 0, 0, (a.total_sales - @prev) / @prev), true)) as growth,
                @prev := a.total_sales                                                         as total_sales
         FROM (select extract(year_month from sales_time) as month, sum(sales_price) as total_sales
               FROM sales

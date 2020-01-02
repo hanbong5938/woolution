@@ -99,7 +99,7 @@ $(function () {
     $.ajax({
         type: 'get',
         url: '/sales-mgt/anal-sales-per',
-        dataType: "JSON",   
+        dataType: "JSON",
         success: ((data) => {
 
             let labelData = [];

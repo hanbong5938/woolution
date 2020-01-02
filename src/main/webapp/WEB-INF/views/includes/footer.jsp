@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.0.1
+    <div class="text-right">
+    <strong>Copyright &copy; 2019-2020 <a href="https://github.com/hanbong5938/woolution"> Woolution</a></strong>
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
 </footer>
 
 <!-- Control Sidebar -->
@@ -25,8 +23,5 @@
 <script src="${contextPath}/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- AdminLTE App -->
 <script src="${contextPath}/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="${contextPath}/js/demo.js"></script>
-<!-- page script -->
 </body>
 </html>

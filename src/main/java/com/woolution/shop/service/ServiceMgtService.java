@@ -39,5 +39,9 @@ public interface ServiceMgtService {
     void bookInsert(List<BookModel> bookModelList);
 
     List<BookModel> bookList();
+
     //end book
+
+    List<ServiceMgtModel> dashboardTable();
+
 }
