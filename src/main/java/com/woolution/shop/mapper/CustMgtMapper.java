@@ -2,6 +2,7 @@ package com.woolution.shop.mapper;
 
 import com.woolution.shop.model.CustMgtModel;
 import com.woolution.shop.model.PuppySpeciesModel;
+import com.woolution.shop.model.SalesMgtModel;
 import com.woolution.shop.model.ServiceMgtCategoryModel;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public interface CustMgtMapper {
     int infoSpeciesAdd(PuppySpeciesModel puppySpeciesModel);
 
     List<CustMgtModel> infoOne(int id);
+
+    List <SalesMgtModel> custHistory(int id);
     //end info
 
     //anal
@@ -30,6 +33,16 @@ public interface CustMgtMapper {
     List<PuppySpeciesModel> analVisit();
 
     List<CustMgtModel> analVisitCnt();
+
+    List<CustMgtModel> analVisitWeek();
+
+    List<CustMgtModel> analVisitWeekLast();
+
+    List<CustMgtModel> analSumPer();
+
+    List<CustMgtModel> analVisitPer();
+
+    List<CustMgtModel> analVisitWeekCnt();
 
     //end anal
 }

@@ -72,5 +72,15 @@ public class SalesMgtController {
         return new ResponseEntity<>(salesMgtService.analSalesRank(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "anal-sum", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<SalesMgtModel>> analSum(){
+        return new ResponseEntity<>(salesMgtService.analSum(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "anal-sum-per", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<SalesMgtModel>> analSumPer(){
+        System.out.println(salesMgtService.analSumPer());
+        return new ResponseEntity<>(salesMgtService.analSumPer(), HttpStatus.OK);
+    }
     //end anal
 }

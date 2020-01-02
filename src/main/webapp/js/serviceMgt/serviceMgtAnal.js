@@ -1,4 +1,7 @@
 $(function () {
+    const ticksStyle = {
+        fontColor: '#495057',
+    };
     //--------------
     //- AREA CHART -
     //--------------
@@ -55,16 +58,23 @@ $(function () {
                     display: false
                 },
                 scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false,
-                        }
-                    }],
                     yAxes: [{
+                        // display: false,
                         gridLines: {
-                            display: false,
-                        }
-                    }]
+                            display: true,
+                            lineWidth: '4px',
+                            color: 'rgba(0, 0, 0, .2)',
+                            zeroLineColor: 'transparent'
+                        },
+                        ticks: $.extend({
+                            beginAtZero: true,
+
+                            // Include a dollar sign in the ticks
+                            callback: function (value, index, values) {
+                                return value + ' 회'
+                            }
+                        }, ticksStyle)
+                    }],
                 }
             };
 
@@ -93,6 +103,7 @@ $(function () {
             for (let i = 0; i < data.length; i++) {
                 datasetsData[i] = data[i].serviceCategoryCtn;
             }
+
             let randomColor = [];
             for (let i = 0; i < data.length; i++) {
 

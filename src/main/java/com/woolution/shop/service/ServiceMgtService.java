@@ -1,5 +1,6 @@
 package com.woolution.shop.service;
 
+import com.woolution.shop.model.BookModel;
 import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 
@@ -33,5 +34,14 @@ public interface ServiceMgtService {
     List<ServiceMgtModel> analServiceCnt();
 
     //end anal
+
+    //book
+    void bookInsert(List<BookModel> bookModelList);
+
+    List<BookModel> bookList();
+
+    //end book
+
+    List<ServiceMgtModel> dashboardTable();
 
 }

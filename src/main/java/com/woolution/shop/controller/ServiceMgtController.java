@@ -1,9 +1,6 @@
 package com.woolution.shop.controller;
 
-import com.woolution.shop.model.CustMgtModel;
-import com.woolution.shop.model.PuppySpeciesModel;
-import com.woolution.shop.model.ServiceMgtCategoryModel;
-import com.woolution.shop.model.ServiceMgtModel;
+import com.woolution.shop.model.*;
 import com.woolution.shop.service.ServiceMgtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,7 +51,7 @@ public class ServiceMgtController {
     }
 
     @PostMapping(value = "/infoCategoryAdd", produces = {MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<String> infoCategoryAdd(@RequestBody ServiceMgtCategoryModel serviceMgtCategoryModel){
+    public ResponseEntity<String> infoCategoryAdd(@RequestBody ServiceMgtCategoryModel serviceMgtCategoryModel) {
         int count = serviceMgtService.infoCategoryAdd(serviceMgtCategoryModel);
         return count == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -83,4 +80,22 @@ public class ServiceMgtController {
 
     //end anal
 
+    //book
+    @PostMapping(value = "/book-insert", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+    public ResponseEntity<String> bookInsert(@RequestBody List<BookModel> bookModelList) {
+        serviceMgtService.bookInsert(bookModelList);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/book-list", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<BookModel>> bookList() {
+        return new ResponseEntity<>(serviceMgtService.bookList(), HttpStatus.OK);
+    }
+    //end book
+
+    @GetMapping(value = "/dashboardTable", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ServiceMgtModel>> dashboardTable () {
+        return new ResponseEntity<>(serviceMgtService.dashboardTable(), HttpStatus.OK);
+
+    }
 }

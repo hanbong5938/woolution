@@ -2,6 +2,7 @@ package com.woolution.shop.controller;
 
 import com.woolution.shop.model.CustMgtModel;
 import com.woolution.shop.model.PuppySpeciesModel;
+import com.woolution.shop.model.SalesMgtModel;
 import com.woolution.shop.service.CustMgtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,12 @@ public class CustMgtController {
     public ResponseEntity<List<CustMgtModel>> infoOne(@PathVariable int id) {
         return new ResponseEntity<>(custMgtService.infoOne(id), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/custHistory/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<SalesMgtModel>> custHistory(@PathVariable int id) {
+        return new ResponseEntity<>(custMgtService.custHistory(id), HttpStatus.OK);
+    }
+
     //end info
 
     //anal
@@ -77,6 +84,26 @@ public class CustMgtController {
     @GetMapping(value = "/anal-visitCnt", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<CustMgtModel>> analVisitCnt() {
         return new ResponseEntity<>(custMgtService.analVisitCnt(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-visit-week", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CustMgtModel>> analVisitWeek() {
+        return new ResponseEntity<>(custMgtService.analVisitWeek(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/anal-visit-week-last", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CustMgtModel>> analVisitWeekLast() {
+        return new ResponseEntity<>(custMgtService.analVisitWeekLast(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "anal-visit-per", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CustMgtModel>> analVisitPer(){
+        return new ResponseEntity<>(custMgtService.analVisitPer(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "anal-visit-week-cnt", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CustMgtModel>> analVisitWeekCnt(){
+        return new ResponseEntity<>(custMgtService.analVisitWeekCnt(), HttpStatus.OK);
     }
 
     //end anal

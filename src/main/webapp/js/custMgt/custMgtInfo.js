@@ -61,7 +61,6 @@ dataTableService = (() => {
         })
     }
 
-
     function custEdit(_this) {
         const rawData = dataTableInfo.row(_this).data();
 
@@ -72,7 +71,6 @@ dataTableService = (() => {
         $(".modal-footer > .btn-danger").show();
         $(".modal-footer > .btn-info").show();
 
-        console.log(rawData);
         //데이터 집어넣기
         $("input[name=id]").val(rawData.id);
         $('select[name=puppy_species_id]').val(rawData.puppy_species_id);
@@ -83,6 +81,24 @@ dataTableService = (() => {
         $("input[name=cust_birthDay]").val(rawData.cust_birthDay);
         $("select[name=cust_sex]").val(rawData.cust_sex);
         $("textarea[name=cust_comment]").val(rawData.cust_comment);
+
+    }
+
+    function custRead(_this) {
+        const rawData = dataTableInfo.row(_this).data();
+
+        $('#custMgtModalReadOnly').modal();
+
+        //데이터 집어넣기
+        $("input[name=idReadOnly]").val(rawData.id);
+        $('input[name=puppy_species_idReadOnly]').val(rawData.puppy_species_id);
+        $("input[name=cust_nmReadOnly]").val(rawData.cust_nm);
+        $("input[name=cust_noReadOnly]").val(rawData.cust_no);
+        $("input[name=cust_addressReadOnly]").val(rawData.cust_address);
+        $("input[name=cust_parent_nmReadOnly]").val(rawData.cust_parent_nm);
+        $("input[name=cust_birthDayReadOnly]").val(rawData.cust_birthDay);
+        $("input[name=cust_sexReadOnly]").val(rawData.cust_sex);
+        $("textarea[name=cust_commentReadOnly]").val(rawData.cust_comment);
 
     }
 
@@ -105,14 +121,58 @@ dataTableService = (() => {
         $(modalId).modal("toggle").find('input,textarea, select').val('');
     }
 
+    function custGetHistory(_this) {
+
+        custHistory.destroy();
+
+        const _thisData = dataTableInfo.row(_this).data()["id"];
+        console.log(_thisData);
+
+        $('#custHistoryModal').modal();
+
+        custHistory = $("#custHistory").DataTable({
+
+            ajax: {
+                type: "GET",
+                url: "/cust-mgt/custHistory/" + _thisData,
+                dataType: "JSON",
+                dataSrc: "",
+                destroy: true,
+            },
+            columns: [
+                {data: "service_nm"},
+                {data: "sales_time"},
+                {data: "sales_price"}
+            ],
+            searching: false,
+            paging: false,
+            info: false,
+            footerCallback: function () {
+                const api = this.api();
+
+                // Total over all pages
+                const total = api
+                    .column(2)
+                    .data()
+                    .reduce(function (a, b) {
+                        return a + b;
+                    }, 0);
+
+                $("#totalPrice").val("￦"+total);
+            },
+        });
+    }
+
     return {
         custTableRegister: custTableRegister,
+        custGetHistory: custGetHistory,
         custEdit: custEdit,
+        custRead: custRead,
         custTableMod: custTableMod,
         custTableDel: custTableDel,
         modalClose: modalClose,
         speciesModalAdd: speciesModalAdd,
-        custTableSpecies: custTableSpecies
+        custTableSpecies: custTableSpecies,
     }
 })();
 
@@ -130,7 +190,11 @@ dataTableInfo = $("#dataTableInfo").DataTable({
     },
     columns: [
         {data: "id", searchable: false},
-        {data: "cust_nm"},
+        {
+            data: "cust_nm", render: function (data) {
+                return '<a ondblclick="const _this = $(this).closest(`tr`); dataTableService.custGetHistory(_this)">' + data + '</a>';
+            }
+        },
         {data: "puppy_species_nm", searchable: false},
         {data: "cust_no"},
         {
@@ -138,7 +202,7 @@ dataTableInfo = $("#dataTableInfo").DataTable({
 
                 //길이제한..
                 if (data.length > 6) {
-                    return data.substr(0, 6) + "...";
+                    return '<a ondblclick="const _this = $(this).closest(`tr`); dataTableService.custRead(_this)">' + data.substr(0, 6) + "..." + '</a>';
                 }
                 return data;
             }
@@ -152,7 +216,7 @@ dataTableInfo = $("#dataTableInfo").DataTable({
 
                 //길이제한..
                 if (data.length > 6) {
-                    return data.substr(0, 6) + "...";
+                    return '<a ondblclick="const _this = $(this).closest(`tr`); dataTableService.custRead(_this)">' + data.substr(0, 6) + "..." + '</a>';
                 }
                 return data;
             }
@@ -215,6 +279,7 @@ $(".modal-footer > .btn-info").click(
     () => {
         const custContent = {
             puppy_species_id: $('select[name=puppy_species_id]').val(),
+            id: $("input[name=id]").val(),
             cust_nm: $("input[name=cust_nm]").val(),
             cust_no: $("input[name=cust_no]").val(),
             cust_address: $("input[name=cust_address]").val(),
@@ -244,6 +309,14 @@ $(".modal-footer > .btn-danger").click(
         dataTableService.modalClose('#custMgtModal');
     }
 );
+
+//초기설정위해성
+custHistory = $("#custHistory").DataTable({
+    searching: false,
+    paging: false,
+    info: false,
+    destroy: true
+});
 
 
 //카테고리 모달 추가

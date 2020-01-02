@@ -2,26 +2,30 @@ let dataTableInfo = '';
 let dataTableService = '';
 let custNmInfo = '';
 let serviceNmInfo = '';
+let custHistory = '';
 
 const getCookie = (name) => {
     const value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value ? value[2] : null;
 };
 
-//dashboard
-$(".content-wrapper").load("/dashboard?lang=" + getCookie('APPLICATION_LOCALE'));
-//--dashboard
+const cookies = (getCookie("APPLICATION_LOCALE"));
+if (cookies === 'ja') {
+    $('#langIcon').html('<i class="flag-icon flag-icon-jp mr-2"></i>');
+    $('#ja').addClass('active');
+} else if (cookies === 'en') {
+    $('#langIcon').html('<i class="flag-icon flag-icon-us mr-2"></i>');
+    $('#en').addClass('active');
+
+} else {
+    $('#langIcon').html('<i class="flag-icon flag-icon-kr mr-2"></i>');
+    $('#ko').addClass('active');
+
+}
 
 //custMGt
 $('#custMgtInfo').click(function () {
     $(".content-wrapper").load("/cust-mgt/info?lang=" + getCookie('APPLICATION_LOCALE'));
-});
-
-$('#custMgtCoupon').click(function () {
-    $(".content-wrapper").load("/cust-mgt/coupon?lang=" + getCookie('APPLICATION_LOCALE'));
-});
-$('#custMgtBook').click(function () {
-    $(".content-wrapper").load("/cust-mgt/book?lang=" + getCookie('APPLICATION_LOCALE'));
 });
 
 $('#custMgtAnal').click(function () {
@@ -39,9 +43,6 @@ $('#serviceMgtMessage').click(function () {
     $(".content-wrapper").load("/service-mgt/message?lang=" + getCookie('APPLICATION_LOCALE'));
 });
 
-$('#serviceMgtCoupon').click(function () {
-    $(".content-wrapper").load("/service-mgt/coupon?lang=" + getCookie('APPLICATION_LOCALE'));
-});
 $('#serviceMgtBook').click(function () {
     $(".content-wrapper").load("/service-mgt/book?lang=" + getCookie('APPLICATION_LOCALE'));
 });

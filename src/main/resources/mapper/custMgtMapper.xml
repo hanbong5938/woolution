@@ -36,12 +36,12 @@
         update cust
         set cust_nm          = #{cust_nm},
             cust_no          = #{cust_no},
-            cust_address     = #{cust_adrress},
+            cust_address     = #{cust_address},
             cust_sex         = #{cust_sex},
             cust_birthDay    = #{cust_birthDay},
-            cust_comment     = #{cust_commnet},
-            cust_parent_nm   = #{cust_parentNm},
-            puppy_species_id = #{puppy_speciesId}
+            cust_comment     = #{cust_comment},
+            cust_parent_nm   = #{cust_parent_nm},
+            puppy_species_id = #{puppy_species_id}
         where id = #{id}
     </update>
 
@@ -80,9 +80,25 @@
           and id = #{id}
     </select>
 
+
+    <select id="custHistory" resultType="hashmap">
+        select sales_price,
+               date_format(sales_time, '%Y-%m-%d %h:%i') as sales_time,
+               service_nm
+        from sales,
+             cust,
+             service
+        where cust.id = #{id}
+          and service_id = service.id
+          and cust_id = cust.id
+          and sales_state = true
+    </select>
+
+
     <!--end info-->
 
     <!--anal-->
+    <!--신규 고객 카운트-->
     <select id="analVisitMonth" resultType="com.woolution.shop.model.CustMgtModel">
         select count(case when cust_state = 1 then 1 end) as cnt
         from cust
@@ -91,26 +107,71 @@
     </select>
 
     <select id="analVisit" resultType="hashmap">
-        select puppy_species_nm, count(DISTINCT puppy_species_id) as count
+        select puppy_species_nm, count(DISTINCT (case when sales_state = true then sales.id end)) as count
         from cust,
-             puppy_species
-        where cust_state = 1
+             puppy_species,
+             sales
+        where cust_state = true
+          and cust_id = cust.id
           and puppy_species_id = puppy_species.id
-          and cust_createAT >= date_add(now(), interval -1 year)
-        group by puppy_species_id
+          and sales_time >= date_add(now(), interval -1 year)
+        group by puppy_species_nm
     </select>
 
     <select id="analVisitCnt" resultType="com.woolution.shop.model.CustMgtModel">
         select cust.cust_nm,
-               (count(cust_id) * 100 / (select count(sales.id) from sales where sales_state = 1)) as cnt,
+               (count(cust_id) * 100 / (select count(sales.id) from sales where sales_state = true)) as cnt,
                count(cust_id)                                                                     as visitCnt
         from cust,
              sales
         where cust.id = cust_id
-          and cust_state = 1
-          and sales_state = 1
-          and cust_createAT >= date_add(now(), interval -1 year)
+          and cust_state = true
+          and sales_state = true
+          and sales_time >= date_add(now(), interval -1 year)
         group by cust_id;
+    </select>
+
+    <select id="analVisitWeek" resultType="hashmap">
+        select count(DISTINCT (case when sales_state = true then sales.id end)) as visitCnt,
+               date_format(sales_time, '%d')                                 as a
+        from cust,
+             sales
+        where sales_state = true
+          and sales_time >= date_add(now(), interval - 7 day)
+        group by a
+    </select>
+
+
+    <select id="analVisitWeekLast" resultType="hashmap">
+        select count(DISTINCT (case when sales_state = true then sales.id end)) as cnt,
+               date_format(sales_time, '%d')                                 as a
+        from cust,
+             sales
+        where sales_state = true
+          and sales_time >= date_add(now(), interval - 14 day)
+          and date_add(now(), interval - 7 day) > sales_time
+        group by a
+    </select>
+
+    <select id="analVisitWeekCnt" resultType="hashmap">
+        select count(DISTINCT (case when sales_state = true then sales.id end)) as count
+        from sales
+        where sales_time >= date_add(now(), interval -1 week)
+    </select>
+
+    <select id="analVisitPer" resultType="hashmap">
+        select concat(round(100 * (this.visitCnt-last.cnt)/last.cnt)) as growth
+        FROM (select count(DISTINCT (case when sales_state = 1 then sales.id end)) as visitCnt
+              from cust,
+                   sales
+              where sales_state = 1
+                and sales_time >= date_add(now(), interval - 7 day)) as this,
+             (select count(DISTINCT (case when sales_state = 1 then sales.id end)) as cnt
+              from cust,
+                   sales
+              where sales_state = 1
+                and sales_time >= date_add(now(), interval - 14 day)
+                and date_add(now(), interval - 7 day) > sales_time) as last
     </select>
     <!--end anal-->
 </mapper>

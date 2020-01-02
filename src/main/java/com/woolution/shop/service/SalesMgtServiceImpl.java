@@ -65,5 +65,15 @@ public class SalesMgtServiceImpl implements SalesMgtService {
     public List<SalesMgtModel> analSalesRank() {
         return salesMgtMapper.analSalesRank();
     }
+
+    @Override
+    public List<SalesMgtModel> analSum() {
+        return salesMgtMapper.analSum();
+    }
+
+    @Override
+    public List<SalesMgtModel> analSumPer() {
+        return salesMgtMapper.analSumPer();
+    }
     //end anal
 }

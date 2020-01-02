@@ -26,11 +26,10 @@
 
     <!-- fullCalendar -->
     <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
-    <link rel="stylesheet" href="../plugins/fullcalendar-interaction/main.min.css">
     <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
     <link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
     <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
 
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
 <div class="wrapper">

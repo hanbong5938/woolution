@@ -24,15 +24,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col-11">
-                            <h3 class="card-title"><spring:message code="welcome"/></h3>
-                        </div>
-                        <div class="col-1">
-                            <button id="tableRegBtn" class="btn btn-primary btn-xs right"><spring:message
+                            <button id="tableRegBtn" class="btn btn-primary btn-xs float-right"><spring:message
                                     code="reg"/></button>
-                        </div>
-                    </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

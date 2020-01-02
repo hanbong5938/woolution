@@ -1,5 +1,6 @@
 package com.woolution.shop.mapper;
 
+import com.woolution.shop.model.BookModel;
 import com.woolution.shop.model.ServiceMgtCategoryModel;
 import com.woolution.shop.model.ServiceMgtModel;
 
@@ -30,6 +31,17 @@ public interface ServiceMgtMapper {
     List<ServiceMgtModel> analService();
 
     List<ServiceMgtModel> analServiceCnt();
-
     //end anal
+
+    //book
+    void bookInsert(List<BookModel> bookModelList);
+
+    void bookDel();
+
+    List<BookModel> bookList();
+
+    //end book
+
+    List<ServiceMgtModel> dashboardTable();
+
 }

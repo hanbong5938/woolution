@@ -1,4 +1,8 @@
 $(function () {
+    const ticksStyle = {
+        fontColor: '#495057',
+    };
+
     //--------------
     //- AREA CHART -
     //--------------
@@ -54,16 +58,30 @@ $(function () {
                     display: false
                 },
                 scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false,
-                        }
-                    }],
                     yAxes: [{
+                        // display: false,
                         gridLines: {
-                            display: false,
-                        }
-                    }]
+                            display: true,
+                            lineWidth: '4px',
+                            color: 'rgba(0, 0, 0, .2)',
+                            zeroLineColor: 'transparent'
+                        },
+                        ticks: $.extend({
+                            beginAtZero: true,
+
+                            // Include a dollar sign in the ticks
+                            callback: function (value, index, values) {
+                                if (value >= 10000) {
+                                    value /= 10000;
+                                    value += '만'
+                                } else if (10000 > value && value >= 1000) {
+                                    value /= 1000;
+                                    value += 'k'
+                                }
+                                return '￦ ' + value
+                            }
+                        }, ticksStyle)
+                    }],
                 }
             };
 
@@ -81,7 +99,7 @@ $(function () {
     $.ajax({
         type: 'get',
         url: '/sales-mgt/anal-sales-per',
-        dataType: "JSON",   
+        dataType: "JSON",
         success: ((data) => {
 
             let labelData = [];

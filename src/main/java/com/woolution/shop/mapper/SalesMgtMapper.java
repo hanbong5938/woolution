@@ -28,5 +28,9 @@ public interface SalesMgtMapper {
 
     List<SalesMgtModel> analSalesRank();
 
+    List<SalesMgtModel> analSum();
+
+    List<SalesMgtModel> analSumPer();
+
     //end anal
 }
