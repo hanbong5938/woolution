@@ -11,6 +11,14 @@ $(function () {
         url: '/sales-mgt/anal-sales-month',
         dataType: "JSON",
         success: ((data) => {
+            const today = new Date();
+            let month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nob', 'Dec'];
+
+            for (let i = 0; i <= today.getMonth(); i++) {
+                month[i + 12] = month[i];
+                month.splice(i, 1);
+            }
+
             let lastYearData = [];
             for (let i = 0; i < 12; i++) {
                 lastYearData[i] = data[i].monthSales;
@@ -22,7 +30,6 @@ $(function () {
             }
 
             const areaChartCanvas = $('#areaChart').get(0).getContext('2d');
-            const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nob', 'Dec'];
             const areaChartData = {
                 labels: [...month],
                 datasets: [
@@ -160,7 +167,11 @@ $(function () {
         },
         columns: [
             {data: "cust_nm"},
-            {data: "groupSum"},
+            {
+                data: "groupSum", searchable: false, render: function (data) {
+                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+                }
+            },
             {data: "cnt", searchable: false},
             {
                 data: "per",

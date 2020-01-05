@@ -120,7 +120,11 @@ dataTableInfo = $("#dataTableInfo").DataTable({
         {data: "id"},
         {data: "service_nm", className: "serviceNm"},
         {data: "cust_nm", className: "custNm"},
-        {data: "sales_price", searchable: false},
+        {
+            data: "sales_price", searchable: false, render: function (data) {
+                return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+            }
+        },
         {data: "sales_time", searchable: false},
         {data: "service_id", visible: false, searchable: false},
         {data: "cust_id", visible: false, searchable: false},
@@ -228,7 +232,11 @@ $('#dataTableInfo tbody').on('dblclick', '.serviceNm', function () {
             {data: "service_category_name"},
             {data: "service_nm"},
             {data: "service_desc"},
-            {data: "service_price", searchable: false},
+            {
+                data: "service_price", searchable: false, render: function (data) {
+                    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+                }
+            },
             {data: "service_tet", searchable: false},
             {data: "service_createAT", searchable: false},
         ],

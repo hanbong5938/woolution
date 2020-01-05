@@ -148,7 +148,7 @@ $(function () {
         url: '/sales-mgt/anal-sum-per',
         type: 'get',
         success: (data) => {
-            const result = data[0].growth;
+            const result = data[1].growth;
             if (result > 0) {
                 const str = '<i class="fas fa-arrow-up"></i> ' + result + ' %';
                 $('#analSumPer').addClass('text-success').html(str);
@@ -176,9 +176,13 @@ $(function () {
                 url: '/cust-mgt/anal-visit-week-last',
                 type: 'get',
                 success: (data) => {
+
                     let lastWeek = [];
                     let thisWeek = [];
                     for (let i = 0; i < date.length; i++) {
+                        if(date[i] < 10 ){
+                            date[i] = '0'+ date[i];
+                        }
                         for (let j = 0; j < temp.length; j++) {
                             if (temp[j].a === date[i] + '') {
                                 thisWeek[i] = temp[j].visitCnt;
@@ -321,5 +325,5 @@ $(function () {
         paging: false,
         info: false,
         searching: false
-    });
+    }).order([2, 'desc']);
 });

@@ -100,6 +100,7 @@ dataTableService = (() => {
     function modalClose(modalId) {
         $(modalId).modal("toggle").find('input,textarea, select').val('');
     }
+
     return {
         serviceTableRegister: serviceTableRegister,
         serviceTableMod: serviceTableMod,
@@ -127,8 +128,15 @@ dataTableInfo = $("#dataTableInfo").DataTable({
         {data: "service_category_name"},
         {data: "service_nm"},
         {data: "service_desc"},
-        {data: "service_price", searchable: false},
-        {data: "service_tet", searchable: false},
+        {
+            data: "service_price", searchable: false, render: function (data) {
+                return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+            }
+        },
+        {data: "service_tet", searchable: false, render: function (data) {
+
+                return data + " min";
+            }},
         {data: "service_state", visible: false, searchable: false},
         {data: "service_createAT", searchable: false},
         {
@@ -146,6 +154,7 @@ $("#tableRegBtn").click(() => {
     //모달 초기화
     dataTableService.modalClose('#serviceMgtModal');
     $('#serviceMgtModal').modal();
+
     $(".modal-footer > .btn-primary").show();
     $(".modal-footer > .btn-danger").hide();
     $(".modal-footer > .btn-info").hide();
@@ -223,10 +232,11 @@ $("#categoryAddBtn").click(
 
         dataTableService.categoryModalAdd(categoryData);
 
+        dataTableService.modalClose('#categoryAddModal');
+
         $('#serviceMgtModal').find('option').remove();
 
         dataTableService.serviceTableCategory();
 
-        dataTableService.modalClose('#categoryAddModal');
     }
 );
