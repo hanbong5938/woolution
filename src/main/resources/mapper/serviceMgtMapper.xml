@@ -77,10 +77,10 @@
 
     <!--anal-->
     <select id="analServiceMonth" resultType="com.woolution.shop.model.ServiceMgtModel">
-        select count(case when service_state = true then 1 end) as serviceCnt
-        from service
-        where service_createAT >= date_add(now(), interval - 2 year)
-        group by extract(year_month from service_createAT)
+        select count(case when sales_state = true then 1 end) as serviceCnt
+        from sales
+        where sales_time >= date_add(now(), interval - 2 year)
+        group by extract(year_month from sales_time)
     </select>
 
     <select id="analService" resultType="com.woolution.shop.model.ServiceMgtCategoryModel">
@@ -141,6 +141,6 @@
         from service
         where service_state = true
         order by serviceCnt desc
-        limit 5
+        limit 4
     </select>
 </mapper>

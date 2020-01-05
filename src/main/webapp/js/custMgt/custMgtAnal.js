@@ -10,6 +10,13 @@ $(function () {
         url: '/cust-mgt/anal-visit-month',
         dataType: "JSON",
         success: ((data) => {
+            const today = new Date();
+            let month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nob', 'Dec'];
+
+            for (let i = 0; i <= today.getMonth(); i++) {
+                month[i + 12] = month[i];
+                month.splice(i, 1);
+            }
 
             let lastYearData = [];
             for (let i = 0; i < 12; i++) {
@@ -22,7 +29,6 @@ $(function () {
             }
 
             const areaChartCanvas = $('#areaChart').get(0).getContext('2d');
-            const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nob', 'Dec'];
             const areaChartData = {
                 labels: [...month],
                 datasets: [

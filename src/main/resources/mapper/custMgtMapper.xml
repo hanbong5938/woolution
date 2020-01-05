@@ -102,7 +102,7 @@
     <select id="analVisitMonth" resultType="com.woolution.shop.model.CustMgtModel">
         select count(case when cust_state = 1 then 1 end) as cnt
         from cust
-        WHERE cust_createAT >= date_add(now(), interval -2 year)
+        WHERE cust_createAT >= date_add(now(), interval -23 month )
         group by extract(year_month from cust_createAT)
     </select>
 
@@ -114,7 +114,7 @@
         where cust_state = true
           and cust_id = cust.id
           and puppy_species_id = puppy_species.id
-          and sales_time >= date_add(now(), interval -1 year)
+          and sales_time >= date_add(now(), interval -11 month )
         group by puppy_species_nm
     </select>
 
@@ -127,7 +127,7 @@
         where cust.id = cust_id
           and cust_state = true
           and sales_state = true
-          and sales_time >= date_add(now(), interval -1 year)
+          and sales_time >= date_add(now(), interval -11 month )
         group by cust_id;
     </select>
 
@@ -137,7 +137,7 @@
         from cust,
              sales
         where sales_state = true
-          and sales_time >= date_add(now(), interval - 7 day)
+          and sales_time >= date_add(now(), interval - 6 day)
         group by a
     </select>
 
@@ -148,15 +148,15 @@
         from cust,
              sales
         where sales_state = true
-          and sales_time >= date_add(now(), interval - 14 day)
-          and date_add(now(), interval - 7 day) > sales_time
+          and sales_time >= date_add(now(), interval - 13 day)
+          and date_add(now(), interval - 6 day) > sales_time
         group by a
     </select>
 
     <select id="analVisitWeekCnt" resultType="hashmap">
         select count(DISTINCT (case when sales_state = true then sales.id end)) as count
         from sales
-        where sales_time >= date_add(now(), interval -1 week)
+        where sales_time >= date_add(now(), interval -6 day )
     </select>
 
     <select id="analVisitPer" resultType="hashmap">
@@ -165,12 +165,12 @@
               from cust,
                    sales
               where sales_state = 1
-                and sales_time >= date_add(now(), interval - 7 day)) as this,
+                and sales_time >= date_add(now(), interval - 6 day)) as this,
              (select count(DISTINCT (case when sales_state = 1 then sales.id end)) as cnt
               from cust,
                    sales
               where sales_state = 1
-                and sales_time >= date_add(now(), interval - 14 day)
+                and sales_time >= date_add(now(), interval - 13 day)
                 and date_add(now(), interval - 7 day) > sales_time) as last
     </select>
     <!--end anal-->
