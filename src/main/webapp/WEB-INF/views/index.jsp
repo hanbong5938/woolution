@@ -40,7 +40,7 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <p class="d-flex flex-column">
-                                    <span class="text-bold text-lg" id = "weekVisitCnt">0</span>
+                                    <span class="text-bold text-lg"><i id = "weekVisitCnt"> 0</i>  <spring:message code="cnt"/></span>
                                     <span><spring:message code="visitorOverTime"/></span>
                                 </p>
                                 <p class="ml-auto d-flex flex-column text-right">

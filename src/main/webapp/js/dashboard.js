@@ -296,7 +296,7 @@ $(function () {
         url: '/cust-mgt/anal-visit-week-cnt',
         type: 'get',
         success: (data) => {
-            $('#weekVisitCnt').html(data[0].count + " 회");
+            $('#weekVisitCnt').html(data[0].count);
         }
     });
 
