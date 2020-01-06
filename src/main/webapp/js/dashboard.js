@@ -73,7 +73,7 @@ $(function () {
             }
 
             //가장 최근달 데이터 뽑기
-            $('#salesSumLast').html('￦ ' + data[17].monthSales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            $('#salesSumLast').html('￦ ' + data[23].monthSales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
             const $salesChart = $('#sales-chart')
             const salesChart = new Chart($salesChart, {
@@ -296,7 +296,7 @@ $(function () {
         url: '/cust-mgt/anal-visit-week-cnt',
         type: 'get',
         success: (data) => {
-            $('#weekVisitCnt').html(data[0].count + " 회");
+            $('#weekVisitCnt').html(data[0].count);
         }
     });
 
