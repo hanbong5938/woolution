@@ -21,13 +21,13 @@
 
 - 사용 D/B : MariaDB
 
-- 사용(개발)  툴 : IntelliJ, Aws ec2, Aws S3
+- 사용(개발)  툴 : IntelliJ, Aws ec2
 
 - 웹 표준 기술 : HTML, CSS, JavaScript, jQuery
 
 - 프레임워크 : Spring Boot, myBatis
 
-- 사용 라이브러리 : chart js, datatables, bootstrap4
+- 사용 라이브러리 : chart js, datatables, adminlte
 
 ### 3. 주요기능
 
